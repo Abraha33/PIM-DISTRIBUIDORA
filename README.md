@@ -52,7 +52,11 @@ Para validar los contratos JSON contra los schemas formales:
 ```bash
 pip install -r requirements.txt
 python scripts/validate_contracts.py
+python scripts/validate_contracts.py --include-failures
 ```
+
+- `python scripts/validate_contracts.py` valida los ejemplos correctos de `contracts/`.
+- `python scripts/validate_contracts.py --include-failures` tambi?n verifica que los ejemplos inv?lidos controlados de `examples/validation_failures/` sean rechazados por el schema.
 
 La validaci?n actual cubre estructura, campos requeridos, tipos y enums principales de `products.json v1`, `product_families` y `barcode_history`.
 

@@ -1,0 +1,14 @@
+{
+  "family_name": "Bolsa 1.5 KG",
+  "parent_code": "BOLSA-1-5KG",
+  "children_codes": [
+    "BOL15-BLANCA",
+    "BOL15-AZUL",
+    "BOL15-ROJA",
+    "BOL15-VERDE"
+  ],
+  "variant_axis": [
+    "color"
+  ],
+  "notes": "La familia agrupa productos relacionados. No reemplaza products.json."
+}
