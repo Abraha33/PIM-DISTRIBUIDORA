@@ -1,0 +1,56 @@
+[
+  {
+    "id": "CO01",
+    "name": "Cristal",
+    "hex_optional": null,
+    "notes": "Color cristal usado en productos transparentes con denominaci?n comercial cristal."
+  },
+  {
+    "id": "CO02",
+    "name": "Blanco",
+    "hex_optional": "#FFFFFF",
+    "notes": "Color blanco."
+  },
+  {
+    "id": "CO03",
+    "name": "Negro",
+    "hex_optional": "#000000",
+    "notes": "Color negro."
+  },
+  {
+    "id": "CO04",
+    "name": "Rojo",
+    "hex_optional": "#FF0000",
+    "notes": "Color rojo."
+  },
+  {
+    "id": "CO05",
+    "name": "Azul",
+    "hex_optional": "#0000FF",
+    "notes": "Color azul."
+  },
+  {
+    "id": "CO06",
+    "name": "Verde",
+    "hex_optional": "#008000",
+    "notes": "Color verde."
+  },
+  {
+    "id": "CO07",
+    "name": "Surtido",
+    "hex_optional": null,
+    "notes": "Usar cuando el producto combina varios colores o se vende surtido."
+  },
+  {
+    "id": "CO08",
+    "name": "Transparente",
+    "hex_optional": null,
+    "notes": "Usar cuando el producto es transparente y no corresponde a la etiqueta comercial Cristal."
+  },
+  {
+    "id": "CO09",
+    "name": "Natural",
+    "hex_optional": null,
+    "notes": "Color natural del material, com?n en kraft, bagazo, madera o bamb?."
+  }
+]

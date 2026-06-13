@@ -1,0 +1,74 @@
+[
+  {
+    "id": "M01",
+    "name": "PET",
+    "description": "Polietileno tereftalato usado en empaques transparentes y resistentes.",
+    "abbreviation": "PET"
+  },
+  {
+    "id": "M02",
+    "name": "PP",
+    "description": "Polipropileno usado en empaques y elementos pl?sticos.",
+    "abbreviation": "PP"
+  },
+  {
+    "id": "M03",
+    "name": "Icopor",
+    "description": "Material espumado usado en envases t?rmicos.",
+    "abbreviation": "ICOPOR"
+  },
+  {
+    "id": "M04",
+    "name": "Cart?n",
+    "description": "Material de fibra usado en empaques y soportes.",
+    "abbreviation": "CARTON"
+  },
+  {
+    "id": "M05",
+    "name": "Papel Kraft",
+    "description": "Papel resistente de apariencia natural.",
+    "abbreviation": "KRAFT"
+  },
+  {
+    "id": "M06",
+    "name": "Bagazo de Ca?a",
+    "description": "Material compostable derivado de fibra de ca?a.",
+    "abbreviation": "BAGAZO"
+  },
+  {
+    "id": "M07",
+    "name": "PLA",
+    "description": "Biopl?stico de ?cido polil?ctico.",
+    "abbreviation": "PLA"
+  },
+  {
+    "id": "M08",
+    "name": "Aluminio",
+    "description": "Metal liviano usado en envases y contenedores.",
+    "abbreviation": "AL"
+  },
+  {
+    "id": "M09",
+    "name": "Madera",
+    "description": "Material natural usado en presentaci?n o soporte.",
+    "abbreviation": "MAD"
+  },
+  {
+    "id": "M10",
+    "name": "Bamb?",
+    "description": "Material natural usado en productos ecol?gicos.",
+    "abbreviation": "BAMBU"
+  },
+  {
+    "id": "M11",
+    "name": "Pl?stico",
+    "description": "Material pl?stico gen?rico cuando no se conoce pol?mero espec?fico.",
+    "abbreviation": "PLAST"
+  },
+  {
+    "id": "M12",
+    "name": "Papel",
+    "description": "Material de papel gen?rico.",
+    "abbreviation": "PAPEL"
+  }
+]

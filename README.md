@@ -1,52 +1,46 @@
 # PIM-DISTRIBUIDORA
 
-Repositorio para documentar y versionar el contrato PIM de Envax.
+## Prop?sito
 
-## Objetivo
+`PIM-DISTRIBUIDORA` es el repositorio maestro para documentar y versionar el PIM de Envax.
 
-El objetivo de este repositorio es mantener un contrato claro, versionado y auditable para el PIM de Envax.
+El objetivo es guardar contratos limpios, ejemplos versionados y diccionarios base para que la informaci?n de producto pueda crecer sin mezclar responsabilidades.
 
-El producto final se maneja en:
+## Versi?n actual
 
-- `data/products.json`
+- Contrato principal: `products.json v1`
+- Ejemplo maestro: `contracts/products.v1.example.json`
+- Estado actual: contrato base completado; m?dulos de stock, marketing e im?genes pendientes.
 
-Los módulos se trabajan por separado y luego se integran al contrato maestro:
+## Archivos principales
 
-- `inventory_flow`: stock level, quality control físico y flujo de inventario.
-- `marketing`: clientes objetivo, catálogos, campañas y promociones.
-- `media`: imágenes por uso.
-- `products.json`: contrato maestro del producto.
+- `contracts/products.v1.example.json`: ejemplo del contrato maestro de producto.
+- `contracts/product_families.v1.example.json`: ejemplo de agrupaci?n padre-hijo / familia de producto.
+- `contracts/barcode_history.v1.example.json`: ejemplo de trazabilidad de c?digos de barras.
+- `dictionaries/unit_dictionary.json`: diccionario de unidades de presentaci?n.
+- `dictionaries/material_dictionary.json`: diccionario de materiales.
+- `dictionaries/color_dictionary.json`: diccionario de colores.
 
-## Estructura
+## M?dulos
 
-```text
-PIM-DISTRIBUIDORA/
-├── README.md
-├── docs/
-│   ├── decisions_log.md
-│   ├── integration_plan.md
-│   └── use_cases/
-│       └── CASE-001-dormant-stock.md
-├── schemas/
-│   ├── products.schema.json
-│   ├── inventory_flow.schema.json
-│   ├── marketing.schema.json
-│   └── media.schema.json
-├── rules/
-│   ├── inventory_rules_m1.json
-│   ├── module_signals.json
-│   └── risk_rules.json
-├── examples/
-│   └── use_case_001_dormant_stock.json
-└── data/
-    ├── products.json
-    ├── product_families.json
-    └── barcode_history.json
-```
+- `modules/inventory_flow`: futuro m?dulo para stock level, quality control f?sico y flujo de inventario.
+- `modules/marketing`: futuro m?dulo para clientes objetivo, cat?logos, campa?as y promociones.
+- `modules/media`: futuro m?dulo para im?genes por uso.
 
-## Principio arquitectónico
+## Estado actual
 
-`products.json` no debería convertirse en un basurero de campos sueltos. Es el contrato maestro. Cada módulo tiene su responsabilidad y su schema.
+? Contrato base `products.json v1` definido.  
+? Diccionarios iniciales creados.  
+? Ejemplos versionados creados.  
+?? `inventory_flow` pendiente.  
+?? `marketing` pendiente.  
+?? `media` pendiente.  
+?? scraper/commercial pendiente.  
+?? stock_policy pendiente.  
+?? quality_control pendiente.
 
-Es como una obra: el plano maestro existe, pero electricidad, plomería y estructura no se dibujan al azar arriba del mismo papel. Cada disciplina tiene su capa, y después se coordina.
+## Regla principal
 
+`products.json` es el contrato maestro del producto. Los m?dulos pueden evolucionar por separado, pero la integraci?n final debe respetar el contrato maestro y las reglas documentadas.
+
+No se debe construir l?gica de negocio, scrapers, f?rmulas de stock ni campa?as desde este repositorio en esta etapa. Primero se solidifica el contrato. Despu?s se automatiza. Es as? de f?cil.

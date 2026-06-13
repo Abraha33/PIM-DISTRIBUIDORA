@@ -1,0 +1,37 @@
+[
+  {
+    "id": "U01",
+    "code": "UND",
+    "name": "Unidad",
+    "description": "Unidad m?nima o individual de producto.",
+    "abbreviation": "UND"
+  },
+  {
+    "id": "U02",
+    "code": "PAQ",
+    "name": "Paquete",
+    "description": "Agrupaci?n comercial de unidades.",
+    "abbreviation": "PAQ"
+  },
+  {
+    "id": "U03",
+    "code": "CJ",
+    "name": "Caja",
+    "description": "Unidad log?stica o de empaque mayor.",
+    "abbreviation": "CJ"
+  },
+  {
+    "id": "U04",
+    "code": "BULTO",
+    "name": "Bulto",
+    "description": "Agrupaci?n log?stica usada para almacenamiento o despacho.",
+    "abbreviation": "BULTO"
+  },
+  {
+    "id": "U05",
+    "code": "MIL",
+    "name": "Millar",
+    "description": "Agrupaci?n equivalente a mil unidades.",
+    "abbreviation": "MIL"
+  }
+]

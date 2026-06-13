@@ -1,0 +1,10 @@
+{
+  "barcode": "7701234567899",
+  "product_code": "D753200",
+  "unit_code": "UND",
+  "unit_factor": 1,
+  "action": "deactivated",
+  "date": "2026-06-11",
+  "user": "admin",
+  "reason": "cambio de c?digo escaneable"
+}
