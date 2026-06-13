@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://envax.local/schemas/product_families.v1.schema.json",
+  "title": "Envax PIM product_families v1",
+  "type": "object",
+  "required": [
+    "family_id",
+    "family_name",
+    "parent_code",
+    "children_codes",
+    "variant_axis",
+    "notes"
+  ],
+  "properties": {
+    "family_id": {
+      "type": "string"
+    },
+    "family_name": {
+      "type": "string"
+    },
+    "parent_code": {
+      "type": "string"
+    },
+    "children_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "variant_axis": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

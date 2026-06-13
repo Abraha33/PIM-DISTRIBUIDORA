@@ -1,0 +1,655 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://envax.local/schemas/products.v1.schema.json",
+  "title": "Envax PIM products.json v1",
+  "description": "Schema formal para validar el contrato maestro de producto PIM Envax v1.",
+  "type": "object",
+  "required": [
+    "code",
+    "status",
+    "is_sellable",
+    "family_id",
+    "identity",
+    "category",
+    "attributes",
+    "unit_presentation",
+    "unit_summary",
+    "names",
+    "commercial",
+    "suppliers",
+    "inventory_flow",
+    "marketing",
+    "media",
+    "data_quality"
+  ],
+  "properties": {
+    "code": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "pending_review"
+      ]
+    },
+    "is_sellable": {
+      "type": "boolean"
+    },
+    "family_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "identity": {
+      "type": "object",
+      "required": [
+        "original_name",
+        "final_name",
+        "reference",
+        "brand"
+      ],
+      "properties": {
+        "original_name": {
+          "type": "string"
+        },
+        "final_name": {
+          "type": "string"
+        },
+        "reference": {
+          "type": "object",
+          "required": [
+            "value",
+            "label"
+          ],
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "brand": {
+          "type": "object",
+          "required": [
+            "code",
+            "name"
+          ],
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "category": {
+      "type": "object",
+      "required": [
+        "mother",
+        "child",
+        "grandchild",
+        "final"
+      ],
+      "properties": {
+        "mother": {
+          "type": "object",
+          "required": [
+            "code",
+            "name"
+          ],
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "child": {
+          "type": "object",
+          "required": [
+            "code",
+            "name"
+          ],
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "grandchild": {
+          "type": "object",
+          "required": [
+            "code",
+            "name"
+          ],
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "final": {
+          "type": "object",
+          "required": [
+            "code",
+            "name"
+          ],
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "attributes": {
+      "type": "object",
+      "required": [
+        "material",
+        "color",
+        "capacity",
+        "dimensions"
+      ],
+      "properties": {
+        "material": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "abbreviation"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "abbreviation": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "color": {
+          "type": "object",
+          "required": [
+            "id",
+            "name"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "capacity": {
+          "type": "object",
+          "required": [
+            "value",
+            "unit",
+            "label"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "unit": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "dimensions": {
+          "type": "object",
+          "required": [
+            "length",
+            "width",
+            "height",
+            "diameter",
+            "unit",
+            "label"
+          ],
+          "properties": {
+            "length": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "width": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "height": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "diameter": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "unit": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "label": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "unit_presentation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "unit_p",
+          "code",
+          "name",
+          "factor",
+          "label",
+          "is_minimum_sale_unit",
+          "is_maximum_purchase_unit",
+          "is_active",
+          "barcodes"
+        ],
+        "properties": {
+          "unit_p": {
+            "type": "integer"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "factor": {
+            "type": "number"
+          },
+          "label": {
+            "type": "string"
+          },
+          "is_minimum_sale_unit": {
+            "type": "boolean"
+          },
+          "is_maximum_purchase_unit": {
+            "type": "boolean"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "barcodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "value",
+                "status",
+                "is_primary"
+              ],
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "active",
+                    "inactive",
+                    "deprecated"
+                  ]
+                },
+                "is_primary": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "unit_summary": {
+      "type": "object",
+      "required": [
+        "minimum_sale_unit",
+        "maximum_purchase_unit"
+      ],
+      "properties": {
+        "minimum_sale_unit": {
+          "type": "object",
+          "required": [
+            "code",
+            "factor",
+            "label"
+          ],
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "factor": {
+              "type": "number"
+            },
+            "label": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "maximum_purchase_unit": {
+          "type": "object",
+          "required": [
+            "code",
+            "factor",
+            "label"
+          ],
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "factor": {
+              "type": "number"
+            },
+            "label": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "names": {
+      "type": "object",
+      "required": [
+        "pos",
+        "logistics",
+        "internal",
+        "ecommerce_short",
+        "ecommerce_long",
+        "ecommerce_short_description",
+        "ecommerce_description",
+        "search_keywords"
+      ],
+      "properties": {
+        "pos": {
+          "type": "string"
+        },
+        "logistics": {
+          "type": "string"
+        },
+        "internal": {
+          "type": "string"
+        },
+        "ecommerce_short": {
+          "type": "string"
+        },
+        "ecommerce_long": {
+          "type": "string"
+        },
+        "ecommerce_short_description": {
+          "type": "string"
+        },
+        "ecommerce_description": {
+          "type": "string"
+        },
+        "search_keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "commercial": {
+      "type": "object",
+      "required": [
+        "prices",
+        "costs",
+        "tax"
+      ],
+      "properties": {
+        "prices": {
+          "type": "array"
+        },
+        "costs": {
+          "type": "array"
+        },
+        "tax": {
+          "type": "object",
+          "required": [
+            "name",
+            "method"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "method": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "suppliers": {
+      "type": "array"
+    },
+    "inventory_flow": {
+      "type": "object",
+      "required": [
+        "status",
+        "summary",
+        "stock",
+        "quality_control",
+        "module_notes"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending_module",
+            "integrated",
+            "disabled"
+          ]
+        },
+        "summary": {
+          "type": "object"
+        },
+        "stock": {
+          "type": "object",
+          "required": [
+            "base_unit",
+            "total",
+            "warehouses",
+            "variants"
+          ],
+          "properties": {
+            "base_unit": {
+              "type": "string"
+            },
+            "total": {
+              "type": "object",
+              "required": [
+                "quantity_base"
+              ],
+              "properties": {
+                "quantity_base": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "warehouses": {
+              "type": "array"
+            },
+            "variants": {
+              "type": "array"
+            }
+          },
+          "additionalProperties": false
+        },
+        "quality_control": {
+          "type": "object"
+        },
+        "module_notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "marketing": {
+      "type": "object",
+      "required": [
+        "status",
+        "customer_segments",
+        "catalog_tags",
+        "campaign_tags",
+        "search_keywords",
+        "module_notes"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending_module",
+            "integrated",
+            "disabled"
+          ]
+        },
+        "customer_segments": {
+          "type": "array"
+        },
+        "catalog_tags": {
+          "type": "array"
+        },
+        "campaign_tags": {
+          "type": "array"
+        },
+        "search_keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "module_notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "media": {
+      "type": "object",
+      "required": [
+        "status",
+        "images",
+        "module_notes"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending_module",
+            "integrated",
+            "disabled"
+          ]
+        },
+        "images": {
+          "type": "array"
+        },
+        "module_notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "data_quality": {
+      "type": "object",
+      "required": [
+        "status",
+        "missing_fields",
+        "warnings",
+        "errors"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "ready",
+            "needs_review",
+            "incomplete"
+          ]
+        },
+        "missing_fields": {
+          "type": "array"
+        },
+        "warnings": {
+          "type": "array"
+        },
+        "errors": {
+          "type": "array"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

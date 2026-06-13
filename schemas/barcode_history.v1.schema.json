@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://envax.local/schemas/barcode_history.v1.schema.json",
+  "title": "Envax PIM barcode_history v1",
+  "type": "object",
+  "required": [
+    "barcode",
+    "product_code",
+    "unit_code",
+    "unit_factor",
+    "action",
+    "date",
+    "user",
+    "reason"
+  ],
+  "properties": {
+    "barcode": {
+      "type": "string"
+    },
+    "product_code": {
+      "type": "string"
+    },
+    "unit_code": {
+      "type": "string"
+    },
+    "unit_factor": {
+      "type": "number"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "created",
+        "activated",
+        "deactivated",
+        "updated",
+        "recycled"
+      ]
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "user": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

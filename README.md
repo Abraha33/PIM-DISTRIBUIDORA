@@ -44,3 +44,15 @@ El objetivo es guardar contratos limpios, ejemplos versionados y diccionarios ba
 `products.json` es el contrato maestro del producto. Los m?dulos pueden evolucionar por separado, pero la integraci?n final debe respetar el contrato maestro y las reglas documentadas.
 
 No se debe construir l?gica de negocio, scrapers, f?rmulas de stock ni campa?as desde este repositorio en esta etapa. Primero se solidifica el contrato. Despu?s se automatiza. Es as? de f?cil.
+
+## Contract validation
+
+Para validar los contratos JSON contra los schemas formales:
+
+```bash
+pip install -r requirements.txt
+python scripts/validate_contracts.py
+```
+
+La validaci?n actual cubre estructura, campos requeridos, tipos y enums principales de `products.json v1`, `product_families` y `barcode_history`.
+
