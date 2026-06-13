@@ -53,10 +53,28 @@ Para validar los contratos JSON contra los schemas formales:
 pip install -r requirements.txt
 python scripts/validate_contracts.py
 python scripts/validate_contracts.py --include-failures
+python scripts/validate_contracts.py --include-dictionaries
+python scripts/validate_contracts.py --include-failures --include-dictionaries
 ```
 
 - `python scripts/validate_contracts.py` valida los ejemplos correctos de `contracts/`.
 - `python scripts/validate_contracts.py --include-failures` tambi?n verifica que los ejemplos inv?lidos controlados de `examples/validation_failures/` sean rechazados por el schema.
+- `python scripts/validate_contracts.py --include-dictionaries` agrega validaci?n de consistencia contra diccionarios controlados.
 
-La validaci?n actual cubre estructura, campos requeridos, tipos y enums principales de `products.json v1`, `product_families` y `barcode_history`.
+La validaci?n actual cubre estructura, campos requeridos, tipos, enums principales y consistencia b?sica de diccionarios de `products.json v1`.
+
+## Dictionary validation
+
+La validaci?n por schema revisa estructura. La validaci?n de diccionarios revisa valores controlados.
+
+```bash
+pip install -r requirements.txt
+python scripts/validate_dictionaries.py
+python scripts/validate_dictionaries.py --include-failures
+python scripts/validate_contracts.py --include-dictionaries
+```
+
+- `python scripts/validate_dictionaries.py` valida que el producto ejemplo use materiales, colores y unidades existentes en `/dictionaries`.
+- `python scripts/validate_dictionaries.py --include-failures` confirma que los ejemplos inv?lidos de `examples/dictionary_failures/` sean rechazados.
+- `python scripts/validate_contracts.py --include-dictionaries` ejecuta validaci?n estructural y validaci?n de diccionarios juntas.
 

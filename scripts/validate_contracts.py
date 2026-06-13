@@ -7,6 +7,8 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
 
+from validate_dictionaries import run_dictionary_validation
+
 ROOT = Path(__file__).resolve().parents[1]
 
 VALIDATION_TARGETS = [
@@ -109,6 +111,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Also validate controlled invalid examples and require them to fail.",
     )
+    parser.add_argument(
+        "--include-dictionaries",
+        action="store_true",
+        help="Also validate controlled dictionary consistency rules.",
+    )
     return parser.parse_args()
 
 
@@ -117,11 +124,15 @@ def main() -> int:
 
     valid_contracts_ok = validate_valid_contracts()
     expected_failures_ok = True
+    dictionary_validation_ok = True
 
     if args.include_failures:
         expected_failures_ok = validate_expected_failures()
 
-    return 0 if valid_contracts_ok and expected_failures_ok else 1
+    if args.include_dictionaries:
+        dictionary_validation_ok = run_dictionary_validation(include_failures=args.include_failures)
+
+    return 0 if valid_contracts_ok and expected_failures_ok and dictionary_validation_ok else 1
 
 
 if __name__ == "__main__":

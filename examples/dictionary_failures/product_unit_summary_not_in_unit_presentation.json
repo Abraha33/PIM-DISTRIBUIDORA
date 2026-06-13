@@ -1,0 +1,165 @@
+{
+  "code": "D753200",
+  "status": "active",
+  "is_sellable": true,
+  "family_id": null,
+  "identity": {
+    "original_name": "SELLO PLUS 32 Oz- PAQ(100uds)caj.(200uds)",
+    "final_name": "Sello Plus PET Cristal 32 OZ UND(1) CJ(200)",
+    "reference": {
+      "value": "753200",
+      "label": "Ref 753200"
+    },
+    "brand": {
+      "code": "",
+      "name": "Darnel"
+    }
+  },
+  "category": {
+    "mother": {
+      "code": "C09",
+      "name": "Contenedores"
+    },
+    "child": {
+      "code": "H25",
+      "name": "Envases Transparentes"
+    },
+    "grandchild": {
+      "code": "N109",
+      "name": "Sello Plus"
+    },
+    "final": {
+      "code": "N109",
+      "name": "Sello Plus"
+    }
+  },
+  "attributes": {
+    "material": {
+      "id": "M01",
+      "name": "PET",
+      "abbreviation": "PET"
+    },
+    "color": {
+      "id": "CO01",
+      "name": "Cristal"
+    },
+    "capacity": {
+      "value": 32,
+      "unit": "OZ",
+      "label": "32 OZ"
+    },
+    "dimensions": {
+      "length": null,
+      "width": null,
+      "height": null,
+      "diameter": null,
+      "unit": null,
+      "label": ""
+    }
+  },
+  "unit_presentation": [
+    {
+      "unit_p": 1,
+      "code": "UND",
+      "name": "Unidad",
+      "factor": 1,
+      "label": "UND(1)",
+      "is_minimum_sale_unit": true,
+      "is_maximum_purchase_unit": false,
+      "is_active": true,
+      "barcodes": [
+        {
+          "value": "7701234567890",
+          "status": "active",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "unit_p": 2,
+      "code": "PAQ",
+      "name": "Paquete",
+      "factor": 100,
+      "label": "PAQ(100)",
+      "is_minimum_sale_unit": false,
+      "is_maximum_purchase_unit": false,
+      "is_active": true,
+      "barcodes": []
+    },
+    {
+      "unit_p": 3,
+      "code": "CJ",
+      "name": "Caja",
+      "factor": 200,
+      "label": "CJ(200)",
+      "is_minimum_sale_unit": false,
+      "is_maximum_purchase_unit": true,
+      "is_active": true,
+      "barcodes": []
+    }
+  ],
+  "unit_summary": {
+    "minimum_sale_unit": {
+      "code": "UND",
+      "factor": 1,
+      "label": "UND(1)"
+    },
+    "maximum_purchase_unit": {
+      "code": "MIL",
+      "factor": 1000,
+      "label": "MIL(1000)"
+    }
+  },
+  "names": {
+    "pos": "Sello Plus PET Cristal 32 OZ UND(1) CJ(200)",
+    "logistics": "D753200 - Ref 753200 - Sello Plus PET Cristal 32 OZ UND(1) CJ(200)",
+    "internal": "D753200 - Sello Plus Ref 753200 PET Cristal 32 OZ UND(1) CJ(200)",
+    "ecommerce_short": "Sello Plus PET Cristal 32 OZ UND(1) CJ(200)",
+    "ecommerce_long": "Sello Plus Darnel PET Cristal 32 OZ - Presentaciones: UND(1), PAQ(100), CJ(200) - Ref 753200",
+    "ecommerce_short_description": "",
+    "ecommerce_description": "",
+    "search_keywords": []
+  },
+  "commercial": {
+    "prices": [],
+    "costs": [],
+    "tax": {
+      "name": "",
+      "method": ""
+    }
+  },
+  "suppliers": [],
+  "inventory_flow": {
+    "status": "pending_module",
+    "summary": {},
+    "stock": {
+      "base_unit": "UND",
+      "total": {
+        "quantity_base": null
+      },
+      "warehouses": [],
+      "variants": []
+    },
+    "quality_control": {},
+    "module_notes": "Se desarrolla en m?dulo separado."
+  },
+  "marketing": {
+    "status": "pending_module",
+    "customer_segments": [],
+    "catalog_tags": [],
+    "campaign_tags": [],
+    "search_keywords": [],
+    "module_notes": "Se desarrolla en m?dulo separado."
+  },
+  "media": {
+    "status": "pending_module",
+    "images": [],
+    "module_notes": "Se desarrolla en m?dulo separado."
+  },
+  "data_quality": {
+    "status": "pending",
+    "missing_fields": [],
+    "warnings": [],
+    "errors": []
+  }
+}
