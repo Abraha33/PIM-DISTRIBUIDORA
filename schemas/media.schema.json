@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://envax.local/schemas/media.schema.json",
+  "title": "Envax Media Module",
+  "type": "object",
+  "properties": {
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["url", "usage"],
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "usage": {
+            "type": "string",
+            "enum": ["primary", "catalog", "campaign", "technical", "packaging", "detail"]
+          },
+          "alt_text": {
+            "type": ["string", "null"]
+          },
+          "sort_order": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
+

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://envax.local/schemas/inventory_flow.schema.json",
+  "title": "Envax Inventory Flow Module",
+  "type": "object",
+  "required": [
+    "stock_level",
+    "stock_status",
+    "physical_quality_status",
+    "inventory_flow_status",
+    "risk_level"
+  ],
+  "properties": {
+    "stock_level": {
+      "type": "number",
+      "minimum": 0
+    },
+    "stock_status": {
+      "type": "string",
+      "enum": ["unknown", "available", "limited", "out_of_stock", "not_managed"]
+    },
+    "last_movement_date": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "days_without_movement": {
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "physical_quality_status": {
+      "type": "string",
+      "enum": ["unknown", "ok", "review_required", "damaged", "expired", "not_applicable"]
+    },
+    "inventory_flow_status": {
+      "type": "string",
+      "enum": ["unknown", "normal", "slow_moving", "dormant", "blocked"]
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": ["none", "low", "medium", "high", "critical"]
+    }
+  },
+  "additionalProperties": false
+}
+

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://envax.local/schemas/marketing.schema.json",
+  "title": "Envax Marketing Module",
+  "type": "object",
+  "properties": {
+    "target_customers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "catalogs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "campaigns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "promotions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commercial_name": {
+      "type": ["string", "null"]
+    },
+    "commercial_description": {
+      "type": ["string", "null"]
+    }
+  },
+  "additionalProperties": false
+}
+

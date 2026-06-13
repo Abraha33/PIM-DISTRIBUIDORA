@@ -1,0 +1,28 @@
+{
+  "version": "m1",
+  "module": "inventory_flow",
+  "rules": [
+    {
+      "id": "INV-M1-001",
+      "name": "Stock level cannot be negative",
+      "field": "stock_level",
+      "condition": "stock_level >= 0",
+      "severity": "error"
+    },
+    {
+      "id": "INV-M1-002",
+      "name": "Dormant stock requires movement age",
+      "field": "days_without_movement",
+      "condition": "inventory_flow_status != dormant OR days_without_movement != null",
+      "severity": "warning"
+    },
+    {
+      "id": "INV-M1-003",
+      "name": "Physical quality review blocks automatic promotion",
+      "field": "physical_quality_status",
+      "condition": "physical_quality_status != review_required OR risk_level in [medium, high, critical]",
+      "severity": "warning"
+    }
+  ]
+}
+

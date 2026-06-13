@@ -1,0 +1,9 @@
+[
+  {
+    "family_id": "family_general",
+    "name": "General",
+    "description": "Familia base para productos aún no clasificados.",
+    "parent_family_id": null
+  }
+]
+

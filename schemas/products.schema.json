@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://envax.local/schemas/products.schema.json",
+  "title": "Envax PIM Master Products Contract",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "product_id",
+      "sku",
+      "name",
+      "family_id",
+      "status",
+      "inventory_flow",
+      "marketing",
+      "media"
+    ],
+    "properties": {
+      "product_id": {
+        "type": "string",
+        "description": "Identificador maestro estable del producto."
+      },
+      "sku": {
+        "type": "string",
+        "description": "Código operativo o comercial del producto."
+      },
+      "name": {
+        "type": "string",
+        "description": "Nombre base del producto."
+      },
+      "family_id": {
+        "type": "string",
+        "description": "Referencia a data/product_families.json."
+      },
+      "barcode": {
+        "type": ["string", "null"],
+        "description": "Código de barras activo, si aplica."
+      },
+      "status": {
+        "type": "string",
+        "enum": ["draft", "active", "inactive", "discontinued"]
+      },
+      "inventory_flow": {
+        "$ref": "inventory_flow.schema.json"
+      },
+      "marketing": {
+        "$ref": "marketing.schema.json"
+      },
+      "media": {
+        "$ref": "media.schema.json"
+      }
+    },
+    "additionalProperties": false
+  }
+}
+

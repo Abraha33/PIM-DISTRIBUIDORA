@@ -1,0 +1,40 @@
+{
+  "case_id": "CASE-001",
+  "name": "Dormant stock detection",
+  "product": {
+    "product_id": "prd_envax_0001",
+    "sku": "ENVAX-SKU-0001",
+    "name": "Producto Envax de ejemplo",
+    "family_id": "family_general",
+    "barcode": null,
+    "status": "active",
+    "inventory_flow": {
+      "stock_level": 120,
+      "stock_status": "available",
+      "last_movement_date": "2025-12-01",
+      "days_without_movement": 194,
+      "physical_quality_status": "review_required",
+      "inventory_flow_status": "dormant",
+      "risk_level": "high"
+    },
+    "marketing": {
+      "target_customers": ["distribuidores", "clientes_mayoristas"],
+      "catalogs": ["catalogo_general"],
+      "campaigns": [],
+      "promotions": ["liquidacion_stock_dormido"],
+      "commercial_name": "Producto Envax de ejemplo",
+      "commercial_description": "Producto de ejemplo para validar detección de stock dormido."
+    },
+    "media": {
+      "images": [
+        {
+          "url": "https://example.com/images/prd_envax_0001-primary.jpg",
+          "usage": "primary",
+          "alt_text": "Producto Envax de ejemplo",
+          "sort_order": 0
+        }
+      ]
+    }
+  }
+}
+

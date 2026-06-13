@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "modules": {
+    "inventory_flow": {
+      "owner_field": "inventory_flow",
+      "schema": "schemas/inventory_flow.schema.json",
+      "signals": [
+        "stock_level",
+        "stock_status",
+        "last_movement_date",
+        "days_without_movement",
+        "physical_quality_status",
+        "inventory_flow_status",
+        "risk_level"
+      ]
+    },
+    "marketing": {
+      "owner_field": "marketing",
+      "schema": "schemas/marketing.schema.json",
+      "signals": [
+        "target_customers",
+        "catalogs",
+        "campaigns",
+        "promotions",
+        "commercial_name",
+        "commercial_description"
+      ]
+    },
+    "media": {
+      "owner_field": "media",
+      "schema": "schemas/media.schema.json",
+      "signals": [
+        "images",
+        "usage",
+        "alt_text",
+        "sort_order"
+      ]
+    }
+  }
+}
+

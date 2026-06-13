@@ -1,0 +1,31 @@
+[
+  {
+    "product_id": "prd_envax_0001",
+    "sku": "ENVAX-SKU-0001",
+    "name": "Producto Envax de ejemplo",
+    "family_id": "family_general",
+    "barcode": null,
+    "status": "draft",
+    "inventory_flow": {
+      "stock_level": 0,
+      "stock_status": "unknown",
+      "last_movement_date": null,
+      "days_without_movement": null,
+      "physical_quality_status": "unknown",
+      "inventory_flow_status": "unknown",
+      "risk_level": "none"
+    },
+    "marketing": {
+      "target_customers": [],
+      "catalogs": [],
+      "campaigns": [],
+      "promotions": [],
+      "commercial_name": null,
+      "commercial_description": null
+    },
+    "media": {
+      "images": []
+    }
+  }
+]
+

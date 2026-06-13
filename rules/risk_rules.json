@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0",
+  "module": "inventory_flow",
+  "risk_model": "dormant_stock_m1",
+  "thresholds": {
+    "low": {
+      "days_without_movement_min": 30
+    },
+    "medium": {
+      "days_without_movement_min": 90
+    },
+    "high": {
+      "days_without_movement_min": 180
+    },
+    "critical": {
+      "days_without_movement_min": 365
+    }
+  },
+  "notes": [
+    "Los umbrales iniciales son base de trabajo y deben ajustarse con datos reales de rotación.",
+    "El riesgo no debe depender solo de días sin movimiento; calidad física y campañas activas también pueden modificar la decisión."
+  ]
+}
+
