@@ -1,0 +1,274 @@
+{
+  "contract_version": "products.json v1",
+  "repository": "PIM-DISTRIBUIDORA",
+  "generated_at": "2026-06-13T18:58:55.839406+00:00",
+  "overall_status": "pass",
+  "summary": {
+    "schema_validation": "pass",
+    "validation_failures": "pass",
+    "dictionary_validation": "pass",
+    "dictionary_failures": "pass",
+    "uniqueness_validation": "pass",
+    "uniqueness_failures": "pass",
+    "warnings_count": 1,
+    "errors_count": 0
+  },
+  "results": {
+    "schema_validation": [
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Schema validation passed.",
+        "rule": "schema_validation"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/product_families.v1.example.json",
+        "message": "Schema validation passed.",
+        "rule": "schema_validation"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/barcode_history.v1.example.json",
+        "message": "Schema validation passed.",
+        "rule": "schema_validation"
+      }
+    ],
+    "validation_failures": [
+      {
+        "status": "pass",
+        "path": "examples/validation_failures/barcode_history_invalid_action.json",
+        "message": "Controlled invalid example was rejected as expected.",
+        "rule": "validation_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/validation_failures/barcode_history_missing_product_code.json",
+        "message": "Controlled invalid example was rejected as expected.",
+        "rule": "validation_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/validation_failures/family_children_codes_not_array.json",
+        "message": "Controlled invalid example was rejected as expected.",
+        "rule": "validation_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/validation_failures/family_missing_family_id.json",
+        "message": "Controlled invalid example was rejected as expected.",
+        "rule": "validation_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/validation_failures/product_invalid_barcode_status.json",
+        "message": "Controlled invalid example was rejected as expected.",
+        "rule": "validation_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/validation_failures/product_invalid_capacity_value.json",
+        "message": "Controlled invalid example was rejected as expected.",
+        "rule": "validation_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/validation_failures/product_invalid_status.json",
+        "message": "Controlled invalid example was rejected as expected.",
+        "rule": "validation_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/validation_failures/product_missing_code.json",
+        "message": "Controlled invalid example was rejected as expected.",
+        "rule": "validation_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/validation_failures/product_missing_names.json",
+        "message": "Controlled invalid example was rejected as expected.",
+        "rule": "validation_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/validation_failures/product_missing_unit_summary.json",
+        "message": "Controlled invalid example was rejected as expected.",
+        "rule": "validation_failures"
+      }
+    ],
+    "dictionary_validation": [
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Dictionary rule passed.",
+        "rule": "material_id_exists"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Dictionary rule passed.",
+        "rule": "color_id_exists"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Dictionary rule passed.",
+        "rule": "unit_presentation_codes_exist"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Dictionary rule passed.",
+        "rule": "unit_summary_codes_exist"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Dictionary rule passed.",
+        "rule": "unit_summary_codes_in_unit_presentation"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Dictionary rule passed.",
+        "rule": "material_abbreviation_matches_dictionary"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Dictionary rule passed.",
+        "rule": "color_name_matches_dictionary"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Dictionary rule passed.",
+        "rule": "unit_presentation_labels_match_code_factor"
+      }
+    ],
+    "dictionary_failures": [
+      {
+        "status": "pass",
+        "path": "examples/dictionary_failures/product_invalid_color_id.json",
+        "message": "Controlled dictionary failure was rejected as expected.",
+        "rule": "dictionary_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/dictionary_failures/product_invalid_material_id.json",
+        "message": "Controlled dictionary failure was rejected as expected.",
+        "rule": "dictionary_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/dictionary_failures/product_invalid_unit_code.json",
+        "message": "Controlled dictionary failure was rejected as expected.",
+        "rule": "dictionary_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/dictionary_failures/product_invalid_unit_label.json",
+        "message": "Controlled dictionary failure was rejected as expected.",
+        "rule": "dictionary_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/dictionary_failures/product_unit_summary_not_in_unit_presentation.json",
+        "message": "Controlled dictionary failure was rejected as expected.",
+        "rule": "dictionary_failures"
+      }
+    ],
+    "uniqueness_validation": [
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/barcode_history.v1.example.json",
+        "message": "Uniqueness rule passed.",
+        "rule": "product_code_uniqueness"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/barcode_history.v1.example.json",
+        "message": "Uniqueness rule passed.",
+        "rule": "active_barcode_uniqueness"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/barcode_history.v1.example.json",
+        "message": "Uniqueness rule passed.",
+        "rule": "primary_barcode_per_unit"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/barcode_history.v1.example.json",
+        "message": "Uniqueness rule passed.",
+        "rule": "barcode_history_references_existing_product_unit"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/barcode_history.v1.example.json",
+        "message": "Uniqueness rule passed.",
+        "rule": "barcode_history_action_consistency"
+      }
+    ],
+    "uniqueness_failures": [
+      {
+        "status": "pass",
+        "path": "examples/uniqueness_failures/barcode_history_activated_but_inactive.json",
+        "message": "Controlled uniqueness failure was rejected as expected.",
+        "rule": "uniqueness_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/uniqueness_failures/barcode_history_deactivated_but_active.json",
+        "message": "Controlled uniqueness failure was rejected as expected.",
+        "rule": "uniqueness_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/uniqueness_failures/barcode_history_recycled_warning.json",
+        "message": "Controlled warning example emitted a warning as expected.",
+        "rule": "uniqueness_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/uniqueness_failures/barcode_history_unknown_product.json",
+        "message": "Controlled uniqueness failure was rejected as expected.",
+        "rule": "uniqueness_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/uniqueness_failures/barcode_history_unknown_unit.json",
+        "message": "Controlled uniqueness failure was rejected as expected.",
+        "rule": "uniqueness_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/uniqueness_failures/product_multiple_primary_barcodes_same_unit.json",
+        "message": "Controlled uniqueness failure was rejected as expected.",
+        "rule": "uniqueness_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/uniqueness_failures/products_duplicate_active_barcode.json",
+        "message": "Controlled uniqueness failure was rejected as expected.",
+        "rule": "uniqueness_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/uniqueness_failures/products_duplicate_code.json",
+        "message": "Controlled uniqueness failure was rejected as expected.",
+        "rule": "uniqueness_failures"
+      }
+    ],
+    "warnings": [
+      {
+        "status": "warning",
+        "path": "examples/uniqueness_failures/barcode_history_recycled_warning.json",
+        "message": "Controlled warning example emitted a warning as expected.",
+        "rule": "uniqueness_failures"
+      }
+    ],
+    "errors": []
+  },
+  "next_recommended_step": "Agregar validaci?n de consistencia de naming contra docs/naming_rules_v1.md sin implementar l?gica comercial."
+}

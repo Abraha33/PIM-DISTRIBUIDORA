@@ -93,3 +93,22 @@ python scripts/validate_contracts.py --include-uniqueness
 - `python scripts/validate_uniqueness.py --include-failures` confirma que los ejemplos controlados de `examples/uniqueness_failures/` fallen o emitan warnings esperados.
 - `python scripts/validate_contracts.py --include-uniqueness` ejecuta schema validation y validaci?n de unicidad juntas.
 
+## Consolidated validation report
+
+Para generar un reporte consolidado de auditor?a del contrato PIM v1:
+
+```bash
+python scripts/generate_validation_report.py
+```
+
+Outputs:
+
+```text
+reports/pim_contract_v1_validation_report.json
+reports/pim_contract_v1_validation_report.md
+```
+
+Este reporte resume todas las capas de validaci?n: schema, ejemplos inv?lidos controlados, diccionarios, fallos de diccionario, unicidad y consistencia de barcodes.
+
+No crea l?gica de negocio, scraper, stock, marketing ni media. Es una foto auditable del estado del contrato.
+
