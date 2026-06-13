@@ -54,7 +54,8 @@ pip install -r requirements.txt
 python scripts/validate_contracts.py
 python scripts/validate_contracts.py --include-failures
 python scripts/validate_contracts.py --include-dictionaries
-python scripts/validate_contracts.py --include-failures --include-dictionaries
+python scripts/validate_contracts.py --include-uniqueness
+python scripts/validate_contracts.py --include-failures --include-dictionaries --include-uniqueness
 ```
 
 - `python scripts/validate_contracts.py` valida los ejemplos correctos de `contracts/`.
@@ -77,4 +78,18 @@ python scripts/validate_contracts.py --include-dictionaries
 - `python scripts/validate_dictionaries.py` valida que el producto ejemplo use materiales, colores y unidades existentes en `/dictionaries`.
 - `python scripts/validate_dictionaries.py --include-failures` confirma que los ejemplos inv?lidos de `examples/dictionary_failures/` sean rechazados.
 - `python scripts/validate_contracts.py --include-dictionaries` ejecuta validaci?n estructural y validaci?n de diccionarios juntas.
+
+## Uniqueness validation
+
+La validaci?n por schema revisa forma. La validaci?n de diccionarios revisa valores controlados. La validaci?n de unicidad revisa consistencia cruzada entre productos y c?digos de barras.
+
+```bash
+python scripts/validate_uniqueness.py
+python scripts/validate_uniqueness.py --include-failures
+python scripts/validate_contracts.py --include-uniqueness
+```
+
+- `python scripts/validate_uniqueness.py` valida unicidad de `product.code`, unicidad de barcodes activos, barcode primario por unidad y consistencia b?sica de `barcode_history`.
+- `python scripts/validate_uniqueness.py --include-failures` confirma que los ejemplos controlados de `examples/uniqueness_failures/` fallen o emitan warnings esperados.
+- `python scripts/validate_contracts.py --include-uniqueness` ejecuta schema validation y validaci?n de unicidad juntas.
 
