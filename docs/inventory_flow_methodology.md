@@ -1,6 +1,6 @@
 # Inventory Flow Methodology
 
-**Fecha de inicio del enfoque:** 2026-06-13
+Fecha de inicio del enfoque: 2026-06-13
 
 ## Objetivo
 
@@ -25,18 +25,18 @@ Cada idea, caso de uso o problema real debe ser clasificado dentro de estas capa
 
 Esta capa responde:
 
-> ?Qu? decisi?n de negocio queremos mejorar?
+?Qu? decisi?n de negocio queremos mejorar?
 
 Prop?sitos principales:
 
-- Liberar flujo de caja.
-- Proteger inventario b?sico.
-- Atender clientes objetivo.
-- Evitar mercanc?a muerta.
-- Evitar da?o f?sico del producto.
-- Optimizar espacio en bodega y punto de venta.
-- Preparar temporadas y eventos.
-- Evitar agotados de productos importantes.
+* Liberar flujo de caja.
+* Proteger inventario b?sico.
+* Atender clientes objetivo.
+* Evitar mercanc?a muerta.
+* Evitar da?o f?sico del producto.
+* Optimizar espacio en bodega y punto de venta.
+* Preparar temporadas y eventos.
+* Evitar agotados de productos importantes.
 
 Ejemplo:
 
@@ -48,7 +48,7 @@ Un producto que no se mueve no se analiza solo como ?producto lento?. Se analiza
 
 Esta capa responde:
 
-> ?Con qu? c?lculo se justifica una alerta o decisi?n?
+?Con qu? c?lculo se justifica una alerta o decisi?n?
 
 La metodolog?a evita tomar decisiones con n?meros arbitrarios. Los umbrales iniciales pueden usarse como hip?tesis, pero las reglas finales deben justificarse con datos del negocio.
 
@@ -56,23 +56,26 @@ Ejemplos de f?rmulas iniciales:
 
 ```text
 rotation_delay_ratio = d?as_sin_venta / frecuencia_normal_de_venta
+```
+
+```text
 cashflow_pressure = valor_inventario_quieto / capital_disponible_para_compras
 ```
 
 Variables matem?ticas importantes:
 
-- d?as sin venta
-- frecuencia normal de venta
-- ventas ?ltimas 4 semanas
-- ventas ?ltimos 90 d?as
-- stock actual
-- valor estimado del inventario
-- capital disponible para compras
-- tiempo de reabastecimiento
-- espacio ocupado
-- riesgo f?sico
-- temporada cercana
-- cliente objetivo relacionado
+* d?as sin venta
+* frecuencia normal de venta
+* ventas ?ltimas 4 semanas
+* ventas ?ltimos 90 d?as
+* stock actual
+* valor estimado del inventario
+* capital disponible para compras
+* tiempo de reabastecimiento
+* espacio ocupado
+* riesgo f?sico
+* temporada cercana
+* cliente objetivo relacionado
 
 ---
 
@@ -80,7 +83,7 @@ Variables matem?ticas importantes:
 
 Esta capa responde:
 
-> ?C?mo pasamos de una conversaci?n o caso real a una regla implementable?
+?C?mo pasamos de una conversaci?n o caso real a una regla implementable?
 
 Flujo oficial de trabajo:
 
@@ -100,10 +103,10 @@ caso real
 
 Tipos de tickets:
 
-- **Ticket s?lido:** ya se puede ejecutar.
-- **Ticket exploratorio:** falta informaci?n para cerrarlo.
-- **Ticket bloqueado:** depende de otro ticket.
-- **Ticket de integraci?n:** conecta el m?dulo con `products.json`.
+* Ticket s?lido: ya se puede ejecutar.
+* Ticket exploratorio: falta informaci?n para cerrarlo.
+* Ticket bloqueado: depende de otro ticket.
+* Ticket de integraci?n: conecta el m?dulo con `products.json`.
 
 ---
 
@@ -111,7 +114,7 @@ Tipos de tickets:
 
 Esta capa responde:
 
-> ?C?mo se guarda todo en una estructura programable?
+?C?mo se guarda todo en una estructura programable?
 
 Estructura base esperada:
 
@@ -155,21 +158,25 @@ Pendientes:
 
 ## Primer caso de uso
 
-### CASE-001 ? Stock dormido para liberar flujo de caja
+CASE-001 ? Stock dormido para liberar flujo de caja
 
-**Prop?sito principal:** `release_cashflow`
+Prop?sito principal:
 
-**Objetivo:**
+```text
+release_cashflow
+```
+
+Objetivo:
 
 Detectar productos quietos, lentos o muertos que pueden estar ocupando espacio y atrapando dinero que podr?a usarse para abastecer productos b?sicos o estrat?gicos para clientes objetivo.
 
 Sensores iniciales:
 
-- `rotation_sensor`
-- `cashflow_sensor`
-- `space_sensor`
-- `strategic_stock_sensor`
-- `season_opportunity_sensor`
+* rotation_sensor
+* cashflow_sensor
+* space_sensor
+* strategic_stock_sensor
+* season_opportunity_sensor
 
 ---
 
@@ -183,18 +190,16 @@ Cada etiqueta debe venir de:
 variable + umbral + c?lculo o condici?n + prop?sito empresarial
 ```
 
-Ejemplo incorrecto:
+Ejemplo:
+
+No basta decir:
 
 ```text
 prioridad alta
 ```
 
-Ejemplo correcto:
+Debe justificarse:
 
 ```text
 prioridad alta porque se activaron sensores de rotaci?n, caja, espacio y no existe temporada cercana.
 ```
-
-?? **Decisi?n tomada:** `inventory_flow` se dise?a como sistema de decisi?n empresarial, no como simple campo de cantidades.
-
-?? **Recomendaci?n experta:** antes de modelar JSON o automatizar reglas, cada caso debe pasar por las cuatro capas. Si saltamos directo al JSON, estamos programando ansiedad, no arquitectura.
