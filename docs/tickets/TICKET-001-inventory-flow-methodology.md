@@ -1,4 +1,4 @@
-﻿# TICKET-001 — Documentar metodología de trabajo de inventory_flow
+# TICKET-001 — Documentar metodología de trabajo de inventory_flow
 
 **Fecha:** 2026-06-13
 
@@ -126,7 +126,7 @@ Este ticket se considera completo cuando:
 - [x] Metodología documentada en `docs/inventory_flow_methodology.md`.
 - [x] Decisión registrada en `docs/decisions_log.md`.
 - [x] CASE-001 preparado en `docs/use_cases/CASE-001-dormant-stock.md`.
-- [ ] Schema `schemas/inventory_flow.schema.json` revisado contra la metodología M1.
-- [ ] Reglas `rules/inventory_rules_m1.json` revisadas contra la metodología M1.
+- [x] Schema `schemas/inventory_flow.schema.json` revisado contra la metodología M1.
+- [x] Reglas `rules/inventory_rules_m1.json` revisadas contra la metodología M1.
 
 📌 **Decisión tomada:** este ticket documenta metodología y arquitectura del módulo; no implementa lógica de stock ni reglas automáticas.

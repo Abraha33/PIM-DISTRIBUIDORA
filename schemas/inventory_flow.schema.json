@@ -1,45 +1,111 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://envax.local/schemas/inventory_flow.schema.json",
-  "title": "Envax Inventory Flow Module",
+  "title": "Envax Inventory Flow Module M1",
+  "description": "Methodology-aligned draft schema for the inventory_flow module. It defines structure for business decision signals, not final stock logic.",
   "type": "object",
   "required": [
-    "stock_level",
-    "stock_status",
-    "physical_quality_status",
-    "inventory_flow_status",
-    "risk_level"
+    "business_purpose",
+    "inventory_bucket",
+    "sensors",
+    "diagnosis",
+    "decision",
+    "module_signals"
   ],
   "properties": {
-    "stock_level": {
-      "type": "number",
-      "minimum": 0
-    },
-    "stock_status": {
+    "business_purpose": {
       "type": "string",
-      "enum": ["unknown", "available", "limited", "out_of_stock", "not_managed"]
+      "description": "Business purpose behind the inventory decision, for example release_cashflow or protect_basic_inventory."
     },
-    "last_movement_date": {
-      "type": ["string", "null"],
-      "format": "date"
-    },
-    "days_without_movement": {
-      "type": ["integer", "null"],
-      "minimum": 0
-    },
-    "physical_quality_status": {
+    "inventory_bucket": {
       "type": "string",
-      "enum": ["unknown", "ok", "review_required", "damaged", "expired", "not_applicable"]
+      "description": "Conceptual inventory classification produced by the module, for example dormant_stock, strategic_stock or season_opportunity."
     },
-    "inventory_flow_status": {
-      "type": "string",
-      "enum": ["unknown", "normal", "slow_moving", "dormant", "blocked"]
+    "sensors": {
+      "type": "object",
+      "description": "Sensor outputs. Each sensor must be justified by variable, threshold, calculation or condition, result, suggested action and business purpose.",
+      "additionalProperties": {
+        "$ref": "#/$defs/sensor"
+      }
     },
-    "risk_level": {
-      "type": "string",
-      "enum": ["none", "low", "medium", "high", "critical"]
+    "diagnosis": {
+      "type": "object",
+      "description": "Business diagnosis produced from sensor signals.",
+      "additionalProperties": true
+    },
+    "decision": {
+      "type": "object",
+      "description": "Recommended decision or next action. This is not automated execution.",
+      "additionalProperties": true
+    },
+    "module_signals": {
+      "type": "object",
+      "description": "Signals emitted to other modules such as marketing, commercial, stock_policy or products.json integration.",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "sensor": {
+      "type": "object",
+      "required": [
+        "status",
+        "variables",
+        "threshold",
+        "calculation_or_condition",
+        "result",
+        "suggested_action",
+        "business_purpose"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "active",
+            "inactive",
+            "needs_review"
+          ]
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "threshold": {
+          "type": [
+            "string",
+            "number",
+            "null"
+          ],
+          "description": "Threshold or threshold hypothesis used by the sensor. Final thresholds require business data."
+        },
+        "calculation_or_condition": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Formula, ratio or condition that justifies the sensor result."
+        },
+        "result": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "suggested_action": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "business_purpose": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false
 }
-

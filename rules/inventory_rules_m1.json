@@ -1,28 +1,136 @@
 {
   "version": "m1",
   "module": "inventory_flow",
+  "status": "methodology_draft",
+  "purpose": "Define methodology-level rules for converting real inventory cases into sensors, decisions and JSON structure. This file does not implement final stock formulas.",
+  "methodology_layers": [
+    "business",
+    "mathematical",
+    "operational_methodology",
+    "technical_json_software"
+  ],
+  "workflow": [
+    "caso real",
+    "problema detectado",
+    "prop?sito empresarial",
+    "variables necesarias",
+    "sensor",
+    "f?rmula o l?gica",
+    "regla M1",
+    "ticket",
+    "documento",
+    "JSON",
+    "integraci?n en products.json"
+  ],
+  "sensor_contract": {
+    "required_components": [
+      "variable",
+      "umbral",
+      "c?lculo o condici?n",
+      "resultado",
+      "acci?n sugerida",
+      "prop?sito empresarial"
+    ],
+    "principle": "Los sensores no son etiquetas decorativas. Cada sensor debe justificar por qu? existe y qu? decisi?n empresarial mejora."
+  },
+  "initial_sensors": [
+    {
+      "id": "rotation_sensor",
+      "business_purpose": "Detectar inventario lento, dormido o muerto.",
+      "variables": [
+        "d?as sin venta",
+        "frecuencia normal de venta",
+        "ventas ?ltimas 4 semanas",
+        "ventas ?ltimos 90 d?as"
+      ],
+      "calculation_or_condition": "rotation_delay_ratio = d?as_sin_venta / frecuencia_normal_de_venta",
+      "threshold_status": "pending_business_data",
+      "suggested_action_status": "pending_rule_definition"
+    },
+    {
+      "id": "cashflow_sensor",
+      "business_purpose": "Detectar capital atrapado en inventario quieto.",
+      "variables": [
+        "valor estimado del inventario",
+        "capital disponible para compras"
+      ],
+      "calculation_or_condition": "cashflow_pressure = valor_inventario_quieto / capital_disponible_para_compras",
+      "threshold_status": "pending_business_data",
+      "suggested_action_status": "pending_rule_definition"
+    },
+    {
+      "id": "space_sensor",
+      "business_purpose": "Detectar ocupaci?n de espacio por inventario de baja prioridad.",
+      "variables": [
+        "espacio ocupado",
+        "stock actual",
+        "inventory_bucket"
+      ],
+      "calculation_or_condition": "pending_methodology_definition",
+      "threshold_status": "pending_business_data",
+      "suggested_action_status": "pending_rule_definition"
+    },
+    {
+      "id": "strategic_stock_sensor",
+      "business_purpose": "Proteger inventario b?sico o estrat?gico para clientes objetivo.",
+      "variables": [
+        "cliente objetivo relacionado",
+        "inventario b?sico",
+        "inventario estrat?gico",
+        "stock actual"
+      ],
+      "calculation_or_condition": "pending_methodology_definition",
+      "threshold_status": "pending_business_data",
+      "suggested_action_status": "pending_rule_definition"
+    },
+    {
+      "id": "season_opportunity_sensor",
+      "business_purpose": "Detectar oportunidades o riesgos por temporada cercana o evento.",
+      "variables": [
+        "temporada cercana",
+        "evento relacionado",
+        "ventas hist?ricas de temporada"
+      ],
+      "calculation_or_condition": "pending_methodology_definition",
+      "threshold_status": "pending_business_data",
+      "suggested_action_status": "pending_rule_definition"
+    }
+  ],
   "rules": [
     {
       "id": "INV-M1-001",
-      "name": "Stock level cannot be negative",
-      "field": "stock_level",
-      "condition": "stock_level >= 0",
+      "name": "Every sensor must declare a business purpose",
+      "type": "methodology",
+      "condition": "sensor.business_purpose must not be empty",
       "severity": "error"
     },
     {
       "id": "INV-M1-002",
-      "name": "Dormant stock requires movement age",
-      "field": "days_without_movement",
-      "condition": "inventory_flow_status != dormant OR days_without_movement != null",
-      "severity": "warning"
+      "name": "Every sensor must declare variables",
+      "type": "methodology",
+      "condition": "sensor.variables must contain at least one variable",
+      "severity": "error"
     },
     {
       "id": "INV-M1-003",
-      "name": "Physical quality review blocks automatic promotion",
-      "field": "physical_quality_status",
-      "condition": "physical_quality_status != review_required OR risk_level in [medium, high, critical]",
+      "name": "Every sensor must declare calculation or condition status",
+      "type": "methodology",
+      "condition": "sensor.calculation_or_condition must exist or be marked pending_methodology_definition",
       "severity": "warning"
+    },
+    {
+      "id": "INV-M1-004",
+      "name": "Thresholds are hypotheses until validated with business data",
+      "type": "methodology",
+      "condition": "threshold_status should be pending_business_data until real data is reviewed",
+      "severity": "warning"
+    },
+    {
+      "id": "INV-M1-005",
+      "name": "No sensor can be treated as a decorative label",
+      "type": "methodology",
+      "condition": "sensor must connect variable, threshold, calculation or condition, result, suggested action and business purpose",
+      "severity": "error"
     }
   ]
 }
-
