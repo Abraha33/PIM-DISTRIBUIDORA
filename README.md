@@ -194,3 +194,9 @@ python scripts/generate_validation_report.py
 
 Este estado no implementa l?gica real de stock, marketing, media, scraper, precios, costos o proveedores. Solo cierra el contrato v1 y define c?mo deben integrarse los m?dulos despu?s.
 
+## Backlog / Ideas futuras
+
+Ideas documentadas para futuras etapas, sin implementación todavía:
+
+- `docs/backlog/compra-asistida-factura-pim-scraper.md`: módulo futuro de compra asistida por factura + PIM + scraper.
+
