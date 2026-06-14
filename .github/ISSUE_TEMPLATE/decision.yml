@@ -1,0 +1,44 @@
+name: Decision Record
+description: For architectural or business decisions that should be remembered.
+title: "[DECISION] "
+labels:
+  - "type:decision"
+body:
+  - type: input
+    id: decision_id
+    attributes:
+      label: Decision ID
+      placeholder: "DEC-001"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+  - type: textarea
+    id: related_issues
+    attributes:
+      label: Related issues
+      description: Link issues, PRs, docs or commits.

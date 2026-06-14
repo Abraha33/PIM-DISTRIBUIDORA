@@ -1,0 +1,57 @@
+name: Idea / Icebox
+description: For ideas that should not be lost but are not ready to become tickets.
+title: "[IDEA] "
+labels:
+  - "type:idea"
+  - "status:icebox"
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Short description of the idea.
+    validations:
+      required: true
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      options:
+        - products_contract
+        - inventory_flow
+        - marketing
+        - media
+        - scraper
+        - commercial
+        - general
+    validations:
+      required: true
+  - type: textarea
+    id: business_value
+    attributes:
+      label: Business value
+      description: What value could this idea create for Envax?
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem it could solve
+      description: What problem might this idea solve?
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Context, links, examples, open questions.
+  - type: dropdown
+    id: readiness
+    attributes:
+      label: Readiness
+      options:
+        - rough idea
+        - needs research
+        - candidate for backlog
+    validations:
+      required: true

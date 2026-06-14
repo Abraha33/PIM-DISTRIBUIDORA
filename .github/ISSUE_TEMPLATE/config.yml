@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: PIM Envax workflow documentation
+    url: https://github.com/Abraha33/PIM-DISTRIBUIDORA/blob/main/docs/github_workflow.md
+    about: Read the project issue workflow before creating new work items.

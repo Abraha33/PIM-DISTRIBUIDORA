@@ -1,0 +1,64 @@
+name: Use Case
+description: For real operational cases that motivate rules or module behavior.
+title: "[USE CASE] "
+labels:
+  - "type:use_case"
+body:
+  - type: input
+    id: case_id
+    attributes:
+      label: Case ID
+      placeholder: "CASE-001"
+    validations:
+      required: true
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      options:
+        - products_contract
+        - inventory_flow
+        - marketing
+        - media
+        - scraper
+        - commercial
+    validations:
+      required: true
+  - type: textarea
+    id: real_business_situation
+    attributes:
+      label: Real business situation
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+    validations:
+      required: true
+  - type: textarea
+    id: variables_involved
+    attributes:
+      label: Variables involved
+  - type: textarea
+    id: sensor_involved
+    attributes:
+      label: Sensor involved
+  - type: textarea
+    id: expected_rule
+    attributes:
+      label: Expected rule
+  - type: textarea
+    id: expected_ticket
+    attributes:
+      label: Expected ticket
+  - type: textarea
+    id: expected_json_impact
+    attributes:
+      label: Expected JSON impact

@@ -1,0 +1,67 @@
+name: Inventory Sensor
+description: For inventory_flow sensors such as rotation_sensor, cashflow_sensor, space_sensor, strategic_stock_sensor and season_opportunity_sensor.
+title: "[SENSOR] "
+labels:
+  - "type:sensor"
+  - "module:inventory_flow"
+body:
+  - type: input
+    id: sensor_name
+    attributes:
+      label: Sensor name
+      placeholder: "rotation_sensor"
+    validations:
+      required: true
+  - type: textarea
+    id: business_purpose
+    attributes:
+      label: Business purpose
+    validations:
+      required: true
+  - type: textarea
+    id: variables
+    attributes:
+      label: Variables
+      description: Business and data variables required by the sensor.
+    validations:
+      required: true
+  - type: textarea
+    id: formula
+    attributes:
+      label: Formula
+      description: Formula, ratio or calculation hypothesis.
+  - type: textarea
+    id: threshold_logic
+    attributes:
+      label: Threshold logic
+      description: Thresholds, sensitivity and activation logic.
+  - type: textarea
+    id: m1_rule
+    attributes:
+      label: M1 rule
+      description: Methodology-level rule, not final business automation.
+  - type: textarea
+    id: ticket_behavior
+    attributes:
+      label: Ticket behavior
+      description: What follow-up tickets or review actions should this sensor create?
+  - type: textarea
+    id: json_structure
+    attributes:
+      label: JSON structure
+      description: Expected JSON shape or conceptual example.
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      value: |
+        - [ ] Sensor has a business purpose.
+        - [ ] Sensor declares variables.
+        - [ ] Sensor declares threshold logic.
+        - [ ] Sensor declares expected JSON impact.
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope

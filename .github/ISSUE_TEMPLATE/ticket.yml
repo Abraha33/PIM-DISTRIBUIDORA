@@ -1,0 +1,95 @@
+name: PIM Ticket
+description: For actionable PIM work with scope, purpose, inputs and expected output.
+title: "[TICKET] "
+labels:
+  - "type:ticket"
+body:
+  - type: input
+    id: ticket_id
+    attributes:
+      label: Ticket ID
+      placeholder: "TICKET-002"
+    validations:
+      required: true
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      options:
+        - products_contract
+        - inventory_flow
+        - marketing
+        - media
+        - scraper
+        - commercial
+    validations:
+      required: true
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Layer
+      options:
+        - empresarial
+        - matematica
+        - operativa
+        - json
+        - documentacion
+        - tecnica
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+    validations:
+      required: true
+  - type: textarea
+    id: business_purpose
+    attributes:
+      label: Business purpose
+    validations:
+      required: true
+  - type: textarea
+    id: mathematical_layer
+    attributes:
+      label: Mathematical layer
+      description: Variables, formula, thresholds and assumptions.
+  - type: textarea
+    id: operational_layer
+    attributes:
+      label: Operational layer
+      description: Cases, tasks, owners and expected workflow.
+  - type: textarea
+    id: json_layer
+    attributes:
+      label: JSON layer
+      description: Expected JSON structure or impact.
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Inputs
+  - type: textarea
+    id: outputs
+    attributes:
+      label: Outputs
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: What this ticket must not do.

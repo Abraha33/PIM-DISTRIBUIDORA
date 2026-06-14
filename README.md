@@ -218,3 +218,23 @@ Documentos:
 - `docs/backlog/ticket_template.md`
 - `docs/backlog/roadmap_m1_m2_m3.md`
 
+## Project management with GitHub Issues and Projects
+
+GitHub Issues será el sistema activo para ideas, tickets, sensores, casos de uso, decisiones, bugs y validaciones.
+
+GitHub Projects será el tablero operativo para visualizar estado, módulo, prioridad y madurez.
+
+Reglas:
+
+- `products.json v1` permanece cerrado.
+- El trabajo de módulos ocurre mediante Issues y branches.
+- Los documentos explican el proceso; los Issues operan el trabajo diario.
+
+Documentos:
+
+- `docs/github_workflow.md`
+- `docs/github_project_setup.md`
+- `docs/issue_taxonomy.md`
+- `docs/github_labels.md`
+- `docs/initial_github_issues.md`
+
