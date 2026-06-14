@@ -13,8 +13,16 @@ Responsabilidad futura:
 - existencias por bodega
 - variantes de inventario
 - relaci?n con unidad base
+- inventario d?bil
+- inventario estrat?gico
+- inventario b?sico
+- oportunidades de temporada
+- riesgos f?sicos
+- necesidades de reabastecimiento
 
-El stock level no se define todav?a con f?rmulas. Se reserva el bloque en el contrato y se desarrolla despu?s.
+El stock level no se define todav?a con f?rmulas finales. Se reserva el bloque en el contrato y se desarrolla despu?s.
+
+La metodolog?a oficial est? documentada en `docs/inventory_flow_methodology.md`.
 
 ## marketing
 
@@ -65,7 +73,7 @@ Responsabilidad futura:
 - pol?ticas por unidad
 - alertas operativas
 
-No se crean f?rmulas de stock en esta etapa.
+No se crean f?rmulas de stock finales en esta etapa.
 
 ## quality_control
 
