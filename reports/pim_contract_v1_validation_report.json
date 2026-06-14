@@ -1,7 +1,7 @@
 {
   "contract_version": "products.json v1",
   "repository": "PIM-DISTRIBUIDORA",
-  "generated_at": "2026-06-14T03:27:06.473745+00:00",
+  "generated_at": "2026-06-14T03:46:47.025728+00:00",
   "overall_status": "pass",
   "summary": {
     "schema_validation": "pass",
@@ -12,7 +12,9 @@
     "uniqueness_failures": "pass",
     "naming_validation": "pass",
     "naming_failures": "pass",
-    "warnings_count": 1,
+    "family_validation": "pass",
+    "family_failures": "pass",
+    "warnings_count": 4,
     "errors_count": 0
   },
   "results": {
@@ -374,15 +376,133 @@
         "rule": "naming_failures"
       }
     ],
+    "family_validation": [
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/product_families.v1.example.json",
+        "message": "Family rule passed.",
+        "rule": "family_id_consistency"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/product_families.v1.example.json",
+        "message": "Family rule passed.",
+        "rule": "children_codes_consistency"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/product_families.v1.example.json",
+        "message": "Family rule passed.",
+        "rule": "product_family_membership"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/product_families.v1.example.json",
+        "message": "Family rule passed.",
+        "rule": "duplicate_child_membership"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/product_families.v1.example.json",
+        "message": "Family rule passed.",
+        "rule": "family_parent_product"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/product_families.v1.example.json",
+        "message": "Family warning rule passed.",
+        "rule": "parent_code_consistency"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/product_families.v1.example.json",
+        "message": "Family warning rule passed.",
+        "rule": "variant_axis_consistency"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json + contracts/product_families.v1.example.json",
+        "message": "Family warning rule passed.",
+        "rule": "product_sellability"
+      }
+    ],
+    "family_failures": [
+      {
+        "status": "pass",
+        "path": "examples/family_failures/family_child_code_unknown.json",
+        "message": "Controlled family failure was rejected as expected.",
+        "rule": "family_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/family_failures/family_parent_code_missing_warning.json",
+        "message": "Controlled family warning emitted a warning as expected.",
+        "rule": "family_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/family_failures/family_variant_axis_missing_child_attribute_warning.json",
+        "message": "Controlled family warning emitted a warning as expected.",
+        "rule": "family_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/family_failures/product_child_family_id_mismatch.json",
+        "message": "Controlled family failure was rejected as expected.",
+        "rule": "family_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/family_failures/product_child_in_multiple_families.json",
+        "message": "Controlled family failure was rejected as expected.",
+        "rule": "family_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/family_failures/product_family_id_unknown.json",
+        "message": "Controlled family failure was rejected as expected.",
+        "rule": "family_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/family_failures/product_family_parent_without_family_id.json",
+        "message": "Controlled family failure was rejected as expected.",
+        "rule": "family_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/family_failures/product_not_sellable_not_family_parent_warning.json",
+        "message": "Controlled family warning emitted a warning as expected.",
+        "rule": "family_failures"
+      }
+    ],
     "warnings": [
       {
         "status": "warning",
         "path": "examples/uniqueness_failures/barcode_history_recycled_warning.json",
         "message": "Controlled warning example emitted a warning as expected.",
         "rule": "uniqueness_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/family_failures/family_parent_code_missing_warning.json",
+        "message": "Controlled family warning emitted a warning as expected.",
+        "rule": "family_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/family_failures/family_variant_axis_missing_child_attribute_warning.json",
+        "message": "Controlled family warning emitted a warning as expected.",
+        "rule": "family_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/family_failures/product_not_sellable_not_family_parent_warning.json",
+        "message": "Controlled family warning emitted a warning as expected.",
+        "rule": "family_failures"
       }
     ],
     "errors": []
   },
-  "next_recommended_step": "Agregar validaci?n de variantes/familias contra product_families.v1 sin implementar l?gica comercial."
+  "next_recommended_step": "Agregar validaci?n de reglas de calidad de datos (`data_quality`) sin implementar l?gica comercial."
 }

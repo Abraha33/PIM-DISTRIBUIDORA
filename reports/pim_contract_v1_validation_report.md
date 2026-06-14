@@ -6,7 +6,7 @@
 
 - Contrato: `products.json v1`
 - Repositorio: `PIM-DISTRIBUIDORA`
-- Generado: `2026-06-14T03:27:06.473745+00:00`
+- Generado: `2026-06-14T03:46:47.025728+00:00`
 
 ## Resumen
 
@@ -20,7 +20,9 @@
 | Fallos controlados de unicidad | ? pass |
 | Validaci?n de nombres | ? pass |
 | Fallos controlados de nombres | ? pass |
-| Advertencias | ?? 1 |
+| Validaci?n de familias y variantes | ? pass |
+| Fallos controlados de familias y variantes | ? pass |
+| Advertencias | ?? 4 |
 | Errores | ? 0 |
 
 ## Validaci?n de schema
@@ -104,9 +106,34 @@
 - ? pass `naming_failures` ? `examples/naming_failures/product_pos_contains_reference.json` ? Controlled naming failure was rejected as expected.
 - ? pass `naming_failures` ? `examples/naming_failures/product_pos_missing_material.json` ? Controlled naming failure was rejected as expected.
 
+## Validaci?n de familias y variantes
+
+- ? pass `family_id_consistency` ? `contracts/products.v1.example.json + contracts/product_families.v1.example.json` ? Family rule passed.
+- ? pass `children_codes_consistency` ? `contracts/products.v1.example.json + contracts/product_families.v1.example.json` ? Family rule passed.
+- ? pass `product_family_membership` ? `contracts/products.v1.example.json + contracts/product_families.v1.example.json` ? Family rule passed.
+- ? pass `duplicate_child_membership` ? `contracts/products.v1.example.json + contracts/product_families.v1.example.json` ? Family rule passed.
+- ? pass `family_parent_product` ? `contracts/products.v1.example.json + contracts/product_families.v1.example.json` ? Family rule passed.
+- ? pass `parent_code_consistency` ? `contracts/products.v1.example.json + contracts/product_families.v1.example.json` ? Family warning rule passed.
+- ? pass `variant_axis_consistency` ? `contracts/products.v1.example.json + contracts/product_families.v1.example.json` ? Family warning rule passed.
+- ? pass `product_sellability` ? `contracts/products.v1.example.json + contracts/product_families.v1.example.json` ? Family warning rule passed.
+
+## Fallos controlados de familias y variantes
+
+- ? pass `family_failures` ? `examples/family_failures/family_child_code_unknown.json` ? Controlled family failure was rejected as expected.
+- ?? warning `family_failures` ? `examples/family_failures/family_parent_code_missing_warning.json` ? Controlled family warning emitted a warning as expected.
+- ?? warning `family_failures` ? `examples/family_failures/family_variant_axis_missing_child_attribute_warning.json` ? Controlled family warning emitted a warning as expected.
+- ? pass `family_failures` ? `examples/family_failures/product_child_family_id_mismatch.json` ? Controlled family failure was rejected as expected.
+- ? pass `family_failures` ? `examples/family_failures/product_child_in_multiple_families.json` ? Controlled family failure was rejected as expected.
+- ? pass `family_failures` ? `examples/family_failures/product_family_id_unknown.json` ? Controlled family failure was rejected as expected.
+- ? pass `family_failures` ? `examples/family_failures/product_family_parent_without_family_id.json` ? Controlled family failure was rejected as expected.
+- ?? warning `family_failures` ? `examples/family_failures/product_not_sellable_not_family_parent_warning.json` ? Controlled family warning emitted a warning as expected.
+
 ## Advertencias
 
 - ?? warning `uniqueness_failures` ? `examples/uniqueness_failures/barcode_history_recycled_warning.json` ? Controlled warning example emitted a warning as expected.
+- ?? warning `family_failures` ? `examples/family_failures/family_parent_code_missing_warning.json` ? Controlled family warning emitted a warning as expected.
+- ?? warning `family_failures` ? `examples/family_failures/family_variant_axis_missing_child_attribute_warning.json` ? Controlled family warning emitted a warning as expected.
+- ?? warning `family_failures` ? `examples/family_failures/product_not_sellable_not_family_parent_warning.json` ? Controlled family warning emitted a warning as expected.
 
 ## Errores
 
@@ -114,4 +141,4 @@
 
 ## Siguiente paso recomendado
 
-Agregar validaci?n de variantes/familias contra product_families.v1 sin implementar l?gica comercial.
+Agregar validaci?n de reglas de calidad de datos (`data_quality`) sin implementar l?gica comercial.

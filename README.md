@@ -125,3 +125,16 @@ python scripts/validate_contracts.py --include-naming
 ```
 
 Esta validaci?n no genera nombres todav?a. Solo valida los nombres ya presentes en el contrato `products.v1.example.json`.
+
+
+## Family and variant validation
+
+La validaci?n de familias revisa consistencia entre `contracts/products.v1.example.json` y `contracts/product_families.v1.example.json`.
+
+```bash
+python scripts/validate_families.py
+python scripts/validate_families.py --include-failures
+python scripts/validate_contracts.py --include-families
+```
+
+Esta validaci?n no implementa l?gica comercial de variantes. Solo valida relaciones: `family_id`, `children_codes`, `parent_code`, membres?a de hijos, duplicados y advertencias de variante.

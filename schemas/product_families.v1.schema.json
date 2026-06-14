@@ -19,7 +19,10 @@
       "type": "string"
     },
     "parent_code": {
-      "type": "string"
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "children_codes": {
       "type": "array",

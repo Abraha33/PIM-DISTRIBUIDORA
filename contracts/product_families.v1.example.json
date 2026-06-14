@@ -1,12 +1,9 @@
 {
-  "family_id": "FAM-BOLSA-1-5KG",
-  "family_name": "Bolsa 1.5 KG",
-  "parent_code": "BOLSA-1-5KG",
+  "family_id": "FAM-SELLO-PLUS",
+  "family_name": "Sello Plus",
+  "parent_code": null,
   "children_codes": [
-    "BOL15-BLANCA",
-    "BOL15-AZUL",
-    "BOL15-ROJA",
-    "BOL15-VERDE"
+    "D753200"
   ],
   "variant_axis": [
     "color"

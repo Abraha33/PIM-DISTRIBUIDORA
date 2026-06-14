@@ -35,6 +35,11 @@ from validate_naming import (  # noqa: E402
     load_json as load_naming_json,
     validate_product_naming_rules,
 )
+from validate_families import (  # noqa: E402
+    FAMILY_FAILURES_DIR,
+    load_scenario as load_family_scenario,
+    validate_family_rules,
+)
 
 REPORTS_DIR = ROOT / "reports"
 JSON_REPORT_PATH = REPORTS_DIR / "pim_contract_v1_validation_report.json"
@@ -299,6 +304,81 @@ def collect_naming_failures() -> tuple[str, list[dict[str, str]], list[dict[str,
     return ("pass" if not errors else "fail", results, errors, warning_items)
 
 
+
+
+def family_rule_results(invalid: dict[str, list[str]], warnings: dict[str, list[str]], path: str) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    rule_names = [
+        "family_id_consistency",
+        "children_codes_consistency",
+        "product_family_membership",
+        "duplicate_child_membership",
+        "family_parent_product",
+    ]
+    warning_rule_names = [
+        "parent_code_consistency",
+        "variant_axis_consistency",
+        "product_sellability",
+    ]
+    results: list[dict[str, str]] = []
+    errors: list[dict[str, str]] = []
+    warning_items: list[dict[str, str]] = []
+
+    for rule_name in rule_names:
+        if rule_name in invalid:
+            for message in invalid[rule_name]:
+                item = make_result("fail", path, message, rule_name)
+                results.append(item)
+                errors.append(item)
+        else:
+            results.append(make_result("pass", path, "Family rule passed.", rule_name))
+
+    for rule_name in warning_rule_names:
+        if rule_name in warnings:
+            for message in warnings[rule_name]:
+                item = make_result("warning", path, message, rule_name)
+                results.append(item)
+                warning_items.append(item)
+        else:
+            results.append(make_result("pass", path, "Family warning rule passed.", rule_name))
+
+    return results, errors, warning_items
+
+
+def collect_family_validation() -> tuple[str, list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    products, families = load_family_scenario()
+    invalid, warnings = validate_family_rules(products, families)
+    path = "contracts/products.v1.example.json + contracts/product_families.v1.example.json"
+    results, errors, warning_items = family_rule_results(invalid, warnings, path)
+    return ("pass" if not errors else "fail", results, errors, warning_items)
+
+
+def collect_family_failures() -> tuple[str, list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    results: list[dict[str, str]] = []
+    errors: list[dict[str, str]] = []
+    warning_items: list[dict[str, str]] = []
+    failure_files = sorted(FAMILY_FAILURES_DIR.glob("*.json"))
+
+    if not failure_files:
+        item = make_result("fail", relative(FAMILY_FAILURES_DIR), "No controlled family failure examples found.", "family_failures")
+        return "fail", [item], [item], []
+
+    for failure_path in failure_files:
+        failure_rel = relative(failure_path)
+        products, families = load_family_scenario(failure_path)
+        invalid, warnings = validate_family_rules(products, families)
+        if invalid:
+            results.append(make_result("pass", failure_rel, "Controlled family failure was rejected as expected.", "family_failures"))
+        elif warnings:
+            warning = make_result("warning", failure_rel, "Controlled family warning emitted a warning as expected.", "family_failures")
+            results.append(warning)
+            warning_items.append(warning)
+        else:
+            item = make_result("fail", failure_rel, "Controlled family failure passed unexpectedly.", "family_failures")
+            results.append(item)
+            errors.append(item)
+
+    return ("pass" if not errors else "fail", results, errors, warning_items)
+
 def build_report() -> dict[str, Any]:
     schema_status, schema_results, schema_errors = collect_schema_validation()
     validation_failures_status, validation_failures_results, validation_failures_errors = collect_validation_failures()
@@ -308,6 +388,8 @@ def build_report() -> dict[str, Any]:
     uniqueness_failures_status, uniqueness_failures_results, uniqueness_failures_errors, uniqueness_failures_warnings = collect_uniqueness_failures()
     naming_status, naming_results, naming_errors, naming_warnings = collect_naming_validation()
     naming_failures_status, naming_failures_results, naming_failures_errors, naming_failures_warnings = collect_naming_failures()
+    family_status, family_results, family_errors, family_warnings = collect_family_validation()
+    family_failures_status, family_failures_results, family_failures_errors, family_failures_warnings = collect_family_failures()
 
     all_errors = (
         schema_errors
@@ -318,8 +400,10 @@ def build_report() -> dict[str, Any]:
         + uniqueness_failures_errors
         + naming_errors
         + naming_failures_errors
+        + family_errors
+        + family_failures_errors
     )
-    all_warnings = uniqueness_warnings + uniqueness_failures_warnings + naming_warnings + naming_failures_warnings
+    all_warnings = uniqueness_warnings + uniqueness_failures_warnings + naming_warnings + naming_failures_warnings + family_warnings + family_failures_warnings
     overall_status = "fail" if all_errors else "pass"
 
     return {
@@ -336,6 +420,8 @@ def build_report() -> dict[str, Any]:
             "uniqueness_failures": uniqueness_failures_status,
             "naming_validation": naming_status,
             "naming_failures": naming_failures_status,
+            "family_validation": family_status,
+            "family_failures": family_failures_status,
             "warnings_count": len(all_warnings),
             "errors_count": len(all_errors),
         },
@@ -348,10 +434,12 @@ def build_report() -> dict[str, Any]:
             "uniqueness_failures": uniqueness_failures_results,
             "naming_validation": naming_results,
             "naming_failures": naming_failures_results,
+            "family_validation": family_results,
+            "family_failures": family_failures_results,
             "warnings": all_warnings,
             "errors": all_errors,
         },
-        "next_recommended_step": "Agregar validaci?n de variantes/familias contra product_families.v1 sin implementar l?gica comercial.",
+        "next_recommended_step": "Agregar validaci?n de reglas de calidad de datos (`data_quality`) sin implementar l?gica comercial.",
     }
 
 
@@ -401,6 +489,8 @@ def render_markdown(report: dict[str, Any]) -> str:
 | Fallos controlados de unicidad | {status_label(summary['uniqueness_failures'])} |
 | Validaci?n de nombres | {status_label(summary['naming_validation'])} |
 | Fallos controlados de nombres | {status_label(summary['naming_failures'])} |
+| Validaci?n de familias y variantes | {status_label(summary['family_validation'])} |
+| Fallos controlados de familias y variantes | {status_label(summary['family_failures'])} |
 | Advertencias | ?? {summary['warnings_count']} |
 | Errores | ? {summary['errors_count']} |
 
@@ -435,6 +525,14 @@ def render_markdown(report: dict[str, Any]) -> str:
 ## Fallos controlados de nombres
 
 {render_items(results['naming_failures'])}
+
+## Validaci?n de familias y variantes
+
+{render_items(results['family_validation'])}
+
+## Fallos controlados de familias y variantes
+
+{render_items(results['family_failures'])}
 
 ## Advertencias
 
