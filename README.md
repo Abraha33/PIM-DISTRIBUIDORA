@@ -237,4 +237,5 @@ Documentos:
 - `docs/issue_taxonomy.md`
 - `docs/github_labels.md`
 - `docs/initial_github_issues.md`
+- `docs/github_cli_setup_commands.md`
 
