@@ -56,3 +56,9 @@ Estas labels deben crearse manualmente o con GitHub CLI.
 ## Recomendación
 
 Mantener las labels simples. Si una label no ayuda a filtrar, priorizar o entender el trabajo, no debería existir.
+
+## Estado de creaci?n
+
+Labels creadas en GitHub con `gh label create` el 2026-06-14.
+
+Total creado: 33 labels.

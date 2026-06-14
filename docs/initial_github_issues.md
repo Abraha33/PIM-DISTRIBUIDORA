@@ -71,3 +71,14 @@ Create the first working module map and boundary decisions before continuing mod
 ## Nota
 
 Estos Issues deben crearse en GitHub y agregarse al Project `PIM Envax ? Roadmap & Backlog`.
+
+## Issues creados en GitHub
+
+- #1 ? EPIC-001 ? inventory_flow M1 ? https://github.com/Abraha33/PIM-DISTRIBUIDORA/issues/1
+- #2 ? TICKET-001 ? Documentar metodolog?a de trabajo de inventory_flow ? https://github.com/Abraha33/PIM-DISTRIBUIDORA/issues/2
+- #3 ? TICKET-002 ? Dise?ar rotation_sensor con base matem?tica ? https://github.com/Abraha33/PIM-DISTRIBUIDORA/issues/3
+- #4 ? TICKET-003 ? Dise?ar cashflow_sensor ? https://github.com/Abraha33/PIM-DISTRIBUIDORA/issues/4
+- #5 ? TICKET-004 ? Dise?ar space_sensor ? https://github.com/Abraha33/PIM-DISTRIBUIDORA/issues/5
+- #6 ? TICKET-005 ? Dise?ar strategic_stock_sensor ? https://github.com/Abraha33/PIM-DISTRIBUIDORA/issues/6
+- #7 ? TICKET-006 ? Dise?ar season_opportunity_sensor ? https://github.com/Abraha33/PIM-DISTRIBUIDORA/issues/7
+- #8 ? TICKET-000 ? Definir Module Map M1 del PIM Envax ? https://github.com/Abraha33/PIM-DISTRIBUIDORA/issues/8
