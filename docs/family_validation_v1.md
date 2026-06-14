@@ -56,3 +56,9 @@ Si lo tiene:
 ?? decisi?n tomada: esta capa valida relaciones, no decide estrategia comercial.
 
 ?? recomendaci?n experta: familia es estructura, no magia. Si quer?s variantes robustas ma?ana, hoy necesit?s relaciones limpias y auditables.
+
+## Script relacionado
+
+```bash
+scripts/validate_families.py
+```

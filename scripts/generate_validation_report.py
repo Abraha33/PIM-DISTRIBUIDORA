@@ -46,6 +46,7 @@ from validate_data_quality import (  # noqa: E402
     load_json as load_data_quality_json,
     validate_product_data_quality,
 )
+from validate_documentation_coverage import validate_documentation_coverage  # noqa: E402
 
 REPORTS_DIR = ROOT / "reports"
 JSON_REPORT_PATH = REPORTS_DIR / "pim_contract_v1_validation_report.json"
@@ -464,6 +465,47 @@ def collect_data_quality_failures() -> tuple[str, list[dict[str, str]], list[dic
 
     return ("pass" if not errors else "fail", results, errors, warning_items)
 
+
+
+def doc_coverage_rule_results(invalid: dict[str, list[str]], warnings: dict[str, list[str]]) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    rule_names = [
+        "script_exists",
+        "script_has_documentation",
+        "documentation_mentions_script",
+        "readme_exists",
+        "readme_mentions_validation_commands",
+    ]
+    warning_rule_names = ["docs_directory_exists"]
+    results: list[dict[str, str]] = []
+    errors: list[dict[str, str]] = []
+    warning_items: list[dict[str, str]] = []
+
+    for rule_name in rule_names:
+        if rule_name in invalid:
+            for message in invalid[rule_name]:
+                item = make_result("fail", "docs/ + README.md", message, rule_name)
+                results.append(item)
+                errors.append(item)
+        else:
+            results.append(make_result("pass", "docs/ + README.md", "Documentation coverage rule passed.", rule_name))
+
+    for rule_name in warning_rule_names:
+        if rule_name in warnings:
+            for message in warnings[rule_name]:
+                item = make_result("warning", "docs/ + README.md", message, rule_name)
+                results.append(item)
+                warning_items.append(item)
+        else:
+            results.append(make_result("pass", "docs/ + README.md", "Documentation coverage warning rule passed.", rule_name))
+
+    return results, errors, warning_items
+
+
+def collect_documentation_coverage_validation() -> tuple[str, list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    invalid, warnings = validate_documentation_coverage()
+    results, errors, warning_items = doc_coverage_rule_results(invalid, warnings)
+    return ("pass" if not errors else "fail", results, errors, warning_items)
+
 def build_report() -> dict[str, Any]:
     schema_status, schema_results, schema_errors = collect_schema_validation()
     validation_failures_status, validation_failures_results, validation_failures_errors = collect_validation_failures()
@@ -477,6 +519,7 @@ def build_report() -> dict[str, Any]:
     family_failures_status, family_failures_results, family_failures_errors, family_failures_warnings = collect_family_failures()
     data_quality_status, data_quality_results, data_quality_errors, data_quality_warnings = collect_data_quality_validation()
     data_quality_failures_status, data_quality_failures_results, data_quality_failures_errors, data_quality_failures_warnings = collect_data_quality_failures()
+    documentation_coverage_status, documentation_coverage_results, documentation_coverage_errors, documentation_coverage_warnings = collect_documentation_coverage_validation()
 
     all_errors = (
         schema_errors
@@ -491,8 +534,9 @@ def build_report() -> dict[str, Any]:
         + family_failures_errors
         + data_quality_errors
         + data_quality_failures_errors
+        + documentation_coverage_errors
     )
-    all_warnings = uniqueness_warnings + uniqueness_failures_warnings + naming_warnings + naming_failures_warnings + family_warnings + family_failures_warnings + data_quality_warnings + data_quality_failures_warnings
+    all_warnings = uniqueness_warnings + uniqueness_failures_warnings + naming_warnings + naming_failures_warnings + family_warnings + family_failures_warnings + data_quality_warnings + data_quality_failures_warnings + documentation_coverage_warnings
     overall_status = "fail" if all_errors else "pass"
 
     return {
@@ -513,6 +557,7 @@ def build_report() -> dict[str, Any]:
             "family_failures": family_failures_status,
             "data_quality_validation": data_quality_status,
             "data_quality_failures": data_quality_failures_status,
+            "documentation_coverage_validation": documentation_coverage_status,
             "warnings_count": len(all_warnings),
             "errors_count": len(all_errors),
         },
@@ -529,10 +574,11 @@ def build_report() -> dict[str, Any]:
             "family_failures": family_failures_results,
             "data_quality_validation": data_quality_results,
             "data_quality_failures": data_quality_failures_results,
+            "documentation_coverage_validation": documentation_coverage_results,
             "warnings": all_warnings,
             "errors": all_errors,
         },
-        "next_recommended_step": "Agregar validaci?n de cobertura documental entre docs/ y scripts sin implementar l?gica comercial.",
+        "next_recommended_step": "Preparar una gu?a de release v1 del contrato PIM sin implementar l?gica comercial.",
     }
 
 
@@ -586,6 +632,7 @@ def render_markdown(report: dict[str, Any]) -> str:
 | Fallos controlados de familias y variantes | {status_label(summary['family_failures'])} |
 | Validaci?n de data_quality | {status_label(summary['data_quality_validation'])} |
 | Fallos controlados de data_quality | {status_label(summary['data_quality_failures'])} |
+| Cobertura documental | {status_label(summary['documentation_coverage_validation'])} |
 | Advertencias | ?? {summary['warnings_count']} |
 | Errores | ? {summary['errors_count']} |
 
@@ -636,6 +683,10 @@ def render_markdown(report: dict[str, Any]) -> str:
 ## Fallos controlados de data_quality
 
 {render_items(results['data_quality_failures'])}
+
+## Cobertura documental
+
+{render_items(results['documentation_coverage_validation'])}
 
 ## Advertencias
 

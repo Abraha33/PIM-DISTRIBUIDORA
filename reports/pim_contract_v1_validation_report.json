@@ -1,7 +1,7 @@
 {
   "contract_version": "products.json v1",
   "repository": "PIM-DISTRIBUIDORA",
-  "generated_at": "2026-06-14T04:01:48.115424+00:00",
+  "generated_at": "2026-06-14T04:09:46.257888+00:00",
   "overall_status": "pass",
   "summary": {
     "schema_validation": "pass",
@@ -16,6 +16,7 @@
     "family_failures": "pass",
     "data_quality_validation": "pass",
     "data_quality_failures": "pass",
+    "documentation_coverage_validation": "pass",
     "warnings_count": 13,
     "errors_count": 0
   },
@@ -632,6 +633,44 @@
         "rule": "data_quality_failures"
       }
     ],
+    "documentation_coverage_validation": [
+      {
+        "status": "pass",
+        "path": "docs/ + README.md",
+        "message": "Documentation coverage rule passed.",
+        "rule": "script_exists"
+      },
+      {
+        "status": "pass",
+        "path": "docs/ + README.md",
+        "message": "Documentation coverage rule passed.",
+        "rule": "script_has_documentation"
+      },
+      {
+        "status": "pass",
+        "path": "docs/ + README.md",
+        "message": "Documentation coverage rule passed.",
+        "rule": "documentation_mentions_script"
+      },
+      {
+        "status": "pass",
+        "path": "docs/ + README.md",
+        "message": "Documentation coverage rule passed.",
+        "rule": "readme_exists"
+      },
+      {
+        "status": "pass",
+        "path": "docs/ + README.md",
+        "message": "Documentation coverage rule passed.",
+        "rule": "readme_mentions_validation_commands"
+      },
+      {
+        "status": "pass",
+        "path": "docs/ + README.md",
+        "message": "Documentation coverage warning rule passed.",
+        "rule": "docs_directory_exists"
+      }
+    ],
     "warnings": [
       {
         "status": "warning",
@@ -714,5 +753,5 @@
     ],
     "errors": []
   },
-  "next_recommended_step": "Agregar validaci?n de cobertura documental entre docs/ y scripts sin implementar l?gica comercial."
+  "next_recommended_step": "Preparar una gu?a de release v1 del contrato PIM sin implementar l?gica comercial."
 }

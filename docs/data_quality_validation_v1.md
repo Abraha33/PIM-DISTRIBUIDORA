@@ -82,3 +82,9 @@ Porque esos datos dependen de scraper o integraciones comerciales futuras. En v1
 ?? decisi?n tomada: `data_quality` gobierna datos del producto, no operaciones f?sicas.
 
 ?? recomendaci?n experta: si quer?s un PIM serio, separ? calidad de dato de calidad f?sica. Si lo mezcl?s, despu?s ni el equipo de datos ni operaciones saben qui?n rompi? qu?.
+
+## Script relacionado
+
+```bash
+scripts/validate_data_quality.py
+```

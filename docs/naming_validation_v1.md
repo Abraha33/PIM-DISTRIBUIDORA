@@ -121,3 +121,9 @@ Incluyen casos como:
 ?? decisi?n tomada: esta capa valida nombres existentes, pero no los produce.
 
 ?? recomendaci?n experta: validar antes de generar es como revisar que el plano actual no se caiga antes de pedirle a alguien que construya cien planos nuevos. Es disciplina, no burocracia.
+
+## Script relacionado
+
+```bash
+scripts/validate_naming.py
+```

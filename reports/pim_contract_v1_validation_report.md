@@ -6,7 +6,7 @@
 
 - Contrato: `products.json v1`
 - Repositorio: `PIM-DISTRIBUIDORA`
-- Generado: `2026-06-14T04:01:48.115424+00:00`
+- Generado: `2026-06-14T04:09:46.257888+00:00`
 
 ## Resumen
 
@@ -24,6 +24,7 @@
 | Fallos controlados de familias y variantes | ? pass |
 | Validaci?n de data_quality | ? pass |
 | Fallos controlados de data_quality | ? pass |
+| Cobertura documental | ? pass |
 | Advertencias | ?? 13 |
 | Errores | ? 0 |
 
@@ -161,6 +162,15 @@
 - ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_same_min_max_unit_warning.json` ? Controlled data_quality warning emitted a warning as expected.
 - ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_suppliers_empty_warning.json` ? Controlled data_quality warning emitted a warning as expected.
 
+## Cobertura documental
+
+- ? pass `script_exists` ? `docs/ + README.md` ? Documentation coverage rule passed.
+- ? pass `script_has_documentation` ? `docs/ + README.md` ? Documentation coverage rule passed.
+- ? pass `documentation_mentions_script` ? `docs/ + README.md` ? Documentation coverage rule passed.
+- ? pass `readme_exists` ? `docs/ + README.md` ? Documentation coverage rule passed.
+- ? pass `readme_mentions_validation_commands` ? `docs/ + README.md` ? Documentation coverage rule passed.
+- ? pass `docs_directory_exists` ? `docs/ + README.md` ? Documentation coverage warning rule passed.
+
 ## Advertencias
 
 - ?? warning `uniqueness_failures` ? `examples/uniqueness_failures/barcode_history_recycled_warning.json` ? Controlled warning example emitted a warning as expected.
@@ -183,4 +193,4 @@
 
 ## Siguiente paso recomendado
 
-Agregar validaci?n de cobertura documental entre docs/ y scripts sin implementar l?gica comercial.
+Preparar una gu?a de release v1 del contrato PIM sin implementar l?gica comercial.

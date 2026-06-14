@@ -151,3 +151,27 @@ python scripts/validate_contracts.py --include-data-quality
 ```
 
 `data_quality` no valida calidad f?sica del producto. Calidad f?sica, almacenamiento, humedad, calor, rotaci?n y pol?ticas de stock pertenecen al m?dulo `inventory_flow`.
+
+
+## Documentation coverage validation
+
+La validaci?n de cobertura documental revisa que cada validador importante tenga documentaci?n asociada y que `README.md` mencione los comandos principales.
+
+```bash
+python scripts/validate_documentation_coverage.py
+python scripts/validate_contracts.py --include-docs
+```
+
+Esta validaci?n no revisa reglas de negocio. Ayuda a mantener el contrato mantenible y auditable.
+
+Comandos principales cubiertos:
+
+```bash
+python scripts/validate_contracts.py
+python scripts/validate_dictionaries.py
+python scripts/validate_uniqueness.py
+python scripts/validate_naming.py
+python scripts/validate_families.py
+python scripts/validate_data_quality.py
+python scripts/generate_validation_report.py
+```
