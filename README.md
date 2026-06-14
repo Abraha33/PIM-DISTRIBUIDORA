@@ -200,3 +200,21 @@ Ideas documentadas para futuras etapas, sin implementación todavía:
 
 - `docs/backlog/compra-asistida-factura-pim-scraper.md`: módulo futuro de compra asistida por factura + PIM + scraper.
 
+## Project management: Backlog, Icebox and Tickets
+
+El proyecto separa ideas, backlog, tickets y roadmap para no mezclar conversación, planificación e implementación.
+
+- Icebox guarda ideas que no deben perderse, pero que todavía no están listas.
+- Backlog contiene trabajo accionable o probable.
+- Tickets son tareas concretas de investigación o desarrollo con alcance definido.
+- Roadmap organiza el trabajo por niveles de madurez.
+- El trabajo de módulos no debe mezclarse con el release `products.json v1`.
+
+Documentos:
+
+- `docs/backlog/ideas_icebox.md`
+- `docs/backlog/product_backlog.md`
+- `docs/backlog/module_backlog.md`
+- `docs/backlog/ticket_template.md`
+- `docs/backlog/roadmap_m1_m2_m3.md`
+
