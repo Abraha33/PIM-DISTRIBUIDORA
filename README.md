@@ -112,3 +112,16 @@ Este reporte resume todas las capas de validaci?n: schema, ejemplos inv?lidos co
 
 No crea l?gica de negocio, scraper, stock, marketing ni media. Es una foto auditable del estado del contrato.
 
+
+
+## Naming validation
+
+La validaci?n de nombres revisa que los nombres existentes del producto sigan `docs/naming_rules_v1.md`.
+
+```bash
+python scripts/validate_naming.py
+python scripts/validate_naming.py --include-failures
+python scripts/validate_contracts.py --include-naming
+```
+
+Esta validaci?n no genera nombres todav?a. Solo valida los nombres ya presentes en el contrato `products.v1.example.json`.

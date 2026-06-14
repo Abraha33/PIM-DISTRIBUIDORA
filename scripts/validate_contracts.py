@@ -9,6 +9,7 @@ from jsonschema import Draft202012Validator, FormatChecker
 
 from validate_dictionaries import run_dictionary_validation
 from validate_uniqueness import run_uniqueness_validation
+from validate_naming import run_naming_validation
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -122,6 +123,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Also validate uniqueness and barcode consistency rules.",
     )
+    parser.add_argument(
+        "--include-naming",
+        action="store_true",
+        help="Also validate product naming rules.",
+    )
     return parser.parse_args()
 
 
@@ -132,6 +138,7 @@ def main() -> int:
     expected_failures_ok = True
     dictionary_validation_ok = True
     uniqueness_validation_ok = True
+    naming_validation_ok = True
 
     if args.include_failures:
         expected_failures_ok = validate_expected_failures()
@@ -142,7 +149,10 @@ def main() -> int:
     if args.include_uniqueness:
         uniqueness_validation_ok = run_uniqueness_validation(include_failures=args.include_failures)
 
-    return 0 if valid_contracts_ok and expected_failures_ok and dictionary_validation_ok and uniqueness_validation_ok else 1
+    if args.include_naming:
+        naming_validation_ok = run_naming_validation(include_failures=args.include_failures)
+
+    return 0 if valid_contracts_ok and expected_failures_ok and dictionary_validation_ok and uniqueness_validation_ok and naming_validation_ok else 1
 
 
 if __name__ == "__main__":

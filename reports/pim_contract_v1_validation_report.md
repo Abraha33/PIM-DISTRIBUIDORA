@@ -6,7 +6,7 @@
 
 - Contrato: `products.json v1`
 - Repositorio: `PIM-DISTRIBUIDORA`
-- Generado: `2026-06-13T18:58:56.258854+00:00`
+- Generado: `2026-06-14T03:27:06.473745+00:00`
 
 ## Resumen
 
@@ -18,6 +18,8 @@
 | Fallos controlados de diccionario | ? pass |
 | Validaci?n de unicidad | ? pass |
 | Fallos controlados de unicidad | ? pass |
+| Validaci?n de nombres | ? pass |
+| Fallos controlados de nombres | ? pass |
 | Advertencias | ?? 1 |
 | Errores | ? 0 |
 
@@ -78,6 +80,30 @@
 - ? pass `uniqueness_failures` ? `examples/uniqueness_failures/products_duplicate_active_barcode.json` ? Controlled uniqueness failure was rejected as expected.
 - ? pass `uniqueness_failures` ? `examples/uniqueness_failures/products_duplicate_code.json` ? Controlled uniqueness failure was rejected as expected.
 
+## Validaci?n de nombres
+
+- ? pass `pos_name_components` ? `contracts/products.v1.example.json` ? Naming rule passed.
+- ? pass `pos_name_forbidden_components` ? `contracts/products.v1.example.json` ? Naming rule passed.
+- ? pass `logistics_name_components` ? `contracts/products.v1.example.json` ? Naming rule passed.
+- ? pass `internal_name_components` ? `contracts/products.v1.example.json` ? Naming rule passed.
+- ? pass `ecommerce_short_components` ? `contracts/products.v1.example.json` ? Naming rule passed.
+- ? pass `ecommerce_short_forbidden_components` ? `contracts/products.v1.example.json` ? Naming rule passed.
+- ? pass `ecommerce_long_components` ? `contracts/products.v1.example.json` ? Naming rule passed.
+- ? pass `unit_label_format_in_names` ? `contracts/products.v1.example.json` ? Naming rule passed.
+
+## Fallos controlados de nombres
+
+- ? pass `naming_failures` ? `examples/naming_failures/product_ecommerce_long_missing_presentaciones.json` ? Controlled naming failure was rejected as expected.
+- ? pass `naming_failures` ? `examples/naming_failures/product_ecommerce_long_missing_unit_label.json` ? Controlled naming failure was rejected as expected.
+- ? pass `naming_failures` ? `examples/naming_failures/product_ecommerce_short_contains_reference.json` ? Controlled naming failure was rejected as expected.
+- ? pass `naming_failures` ? `examples/naming_failures/product_internal_missing_reference.json` ? Controlled naming failure was rejected as expected.
+- ? pass `naming_failures` ? `examples/naming_failures/product_invalid_unit_label_in_name.json` ? Controlled naming failure was rejected as expected.
+- ? pass `naming_failures` ? `examples/naming_failures/product_logistics_missing_code.json` ? Controlled naming failure was rejected as expected.
+- ? pass `naming_failures` ? `examples/naming_failures/product_logistics_missing_reference.json` ? Controlled naming failure was rejected as expected.
+- ? pass `naming_failures` ? `examples/naming_failures/product_pos_contains_brand.json` ? Controlled naming failure was rejected as expected.
+- ? pass `naming_failures` ? `examples/naming_failures/product_pos_contains_reference.json` ? Controlled naming failure was rejected as expected.
+- ? pass `naming_failures` ? `examples/naming_failures/product_pos_missing_material.json` ? Controlled naming failure was rejected as expected.
+
 ## Advertencias
 
 - ?? warning `uniqueness_failures` ? `examples/uniqueness_failures/barcode_history_recycled_warning.json` ? Controlled warning example emitted a warning as expected.
@@ -88,4 +114,4 @@
 
 ## Siguiente paso recomendado
 
-Agregar validaci?n de consistencia de naming contra docs/naming_rules_v1.md sin implementar l?gica comercial.
+Agregar validaci?n de variantes/familias contra product_families.v1 sin implementar l?gica comercial.

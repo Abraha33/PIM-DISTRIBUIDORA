@@ -29,6 +29,12 @@ from validate_uniqueness import (  # noqa: E402
     load_scenario,
     validate_uniqueness_rules,
 )
+from validate_naming import (  # noqa: E402
+    NAMING_FAILURES_DIR,
+    PRODUCT_CONTRACT as NAMING_PRODUCT_CONTRACT,
+    load_json as load_naming_json,
+    validate_product_naming_rules,
+)
 
 REPORTS_DIR = ROOT / "reports"
 JSON_REPORT_PATH = REPORTS_DIR / "pim_contract_v1_validation_report.json"
@@ -225,6 +231,74 @@ def collect_uniqueness_failures() -> tuple[str, list[dict[str, str]], list[dict[
     return ("pass" if not errors else "fail", results, errors, warning_items)
 
 
+def naming_rule_results(invalid: dict[str, list[str]], warnings: dict[str, list[str]], path: str) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    rule_names = [
+        "pos_name_components",
+        "pos_name_forbidden_components",
+        "logistics_name_components",
+        "internal_name_components",
+        "ecommerce_short_components",
+        "ecommerce_short_forbidden_components",
+        "ecommerce_long_components",
+        "unit_label_format_in_names",
+    ]
+    results: list[dict[str, str]] = []
+    errors: list[dict[str, str]] = []
+    warning_items: list[dict[str, str]] = []
+
+    for rule_name in rule_names:
+        if rule_name in invalid:
+            for message in invalid[rule_name]:
+                item = make_result("fail", path, message, rule_name)
+                results.append(item)
+                errors.append(item)
+        else:
+            results.append(make_result("pass", path, "Naming rule passed.", rule_name))
+
+    for rule_name, messages in warnings.items():
+        for message in messages:
+            item = make_result("warning", path, message, rule_name)
+            results.append(item)
+            warning_items.append(item)
+
+    return results, errors, warning_items
+
+
+def collect_naming_validation() -> tuple[str, list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    product = load_naming_json(NAMING_PRODUCT_CONTRACT)
+    invalid, warnings = validate_product_naming_rules(product)
+    results, errors, warning_items = naming_rule_results(invalid, warnings, relative(NAMING_PRODUCT_CONTRACT))
+    return ("pass" if not errors else "fail", results, errors, warning_items)
+
+
+def collect_naming_failures() -> tuple[str, list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    results: list[dict[str, str]] = []
+    errors: list[dict[str, str]] = []
+    warning_items: list[dict[str, str]] = []
+    failure_files = sorted(NAMING_FAILURES_DIR.glob("*.json"))
+
+    if not failure_files:
+        item = make_result("fail", relative(NAMING_FAILURES_DIR), "No controlled naming failure examples found.", "naming_failures")
+        return "fail", [item], [item], []
+
+    for failure_path in failure_files:
+        failure_rel = relative(failure_path)
+        product = load_naming_json(failure_path)
+        invalid, warnings = validate_product_naming_rules(product)
+        if invalid:
+            results.append(make_result("pass", failure_rel, "Controlled naming failure was rejected as expected.", "naming_failures"))
+        elif warnings:
+            warning = make_result("warning", failure_rel, "Controlled naming warning emitted a warning as expected.", "naming_failures")
+            results.append(warning)
+            warning_items.append(warning)
+        else:
+            item = make_result("fail", failure_rel, "Controlled naming failure passed unexpectedly.", "naming_failures")
+            results.append(item)
+            errors.append(item)
+
+    return ("pass" if not errors else "fail", results, errors, warning_items)
+
+
 def build_report() -> dict[str, Any]:
     schema_status, schema_results, schema_errors = collect_schema_validation()
     validation_failures_status, validation_failures_results, validation_failures_errors = collect_validation_failures()
@@ -232,6 +306,8 @@ def build_report() -> dict[str, Any]:
     dictionary_failures_status, dictionary_failures_results, dictionary_failures_errors = collect_dictionary_failures()
     uniqueness_status, uniqueness_results, uniqueness_errors, uniqueness_warnings = collect_uniqueness_validation()
     uniqueness_failures_status, uniqueness_failures_results, uniqueness_failures_errors, uniqueness_failures_warnings = collect_uniqueness_failures()
+    naming_status, naming_results, naming_errors, naming_warnings = collect_naming_validation()
+    naming_failures_status, naming_failures_results, naming_failures_errors, naming_failures_warnings = collect_naming_failures()
 
     all_errors = (
         schema_errors
@@ -240,8 +316,10 @@ def build_report() -> dict[str, Any]:
         + dictionary_failures_errors
         + uniqueness_errors
         + uniqueness_failures_errors
+        + naming_errors
+        + naming_failures_errors
     )
-    all_warnings = uniqueness_warnings + uniqueness_failures_warnings
+    all_warnings = uniqueness_warnings + uniqueness_failures_warnings + naming_warnings + naming_failures_warnings
     overall_status = "fail" if all_errors else "pass"
 
     return {
@@ -256,6 +334,8 @@ def build_report() -> dict[str, Any]:
             "dictionary_failures": dictionary_failures_status,
             "uniqueness_validation": uniqueness_status,
             "uniqueness_failures": uniqueness_failures_status,
+            "naming_validation": naming_status,
+            "naming_failures": naming_failures_status,
             "warnings_count": len(all_warnings),
             "errors_count": len(all_errors),
         },
@@ -266,10 +346,12 @@ def build_report() -> dict[str, Any]:
             "dictionary_failures": dictionary_failures_results,
             "uniqueness_validation": uniqueness_results,
             "uniqueness_failures": uniqueness_failures_results,
+            "naming_validation": naming_results,
+            "naming_failures": naming_failures_results,
             "warnings": all_warnings,
             "errors": all_errors,
         },
-        "next_recommended_step": "Agregar validaci?n de consistencia de naming contra docs/naming_rules_v1.md sin implementar l?gica comercial.",
+        "next_recommended_step": "Agregar validaci?n de variantes/familias contra product_families.v1 sin implementar l?gica comercial.",
     }
 
 
@@ -317,6 +399,8 @@ def render_markdown(report: dict[str, Any]) -> str:
 | Fallos controlados de diccionario | {status_label(summary['dictionary_failures'])} |
 | Validaci?n de unicidad | {status_label(summary['uniqueness_validation'])} |
 | Fallos controlados de unicidad | {status_label(summary['uniqueness_failures'])} |
+| Validaci?n de nombres | {status_label(summary['naming_validation'])} |
+| Fallos controlados de nombres | {status_label(summary['naming_failures'])} |
 | Advertencias | ?? {summary['warnings_count']} |
 | Errores | ? {summary['errors_count']} |
 
@@ -343,6 +427,14 @@ def render_markdown(report: dict[str, Any]) -> str:
 ## Fallos controlados de unicidad
 
 {render_items(results['uniqueness_failures'])}
+
+## Validaci?n de nombres
+
+{render_items(results['naming_validation'])}
+
+## Fallos controlados de nombres
+
+{render_items(results['naming_failures'])}
 
 ## Advertencias
 

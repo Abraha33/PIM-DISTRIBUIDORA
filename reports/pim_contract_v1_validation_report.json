@@ -1,7 +1,7 @@
 {
   "contract_version": "products.json v1",
   "repository": "PIM-DISTRIBUIDORA",
-  "generated_at": "2026-06-13T18:58:55.839406+00:00",
+  "generated_at": "2026-06-14T03:27:06.473745+00:00",
   "overall_status": "pass",
   "summary": {
     "schema_validation": "pass",
@@ -10,6 +10,8 @@
     "dictionary_failures": "pass",
     "uniqueness_validation": "pass",
     "uniqueness_failures": "pass",
+    "naming_validation": "pass",
+    "naming_failures": "pass",
     "warnings_count": 1,
     "errors_count": 0
   },
@@ -260,6 +262,118 @@
         "rule": "uniqueness_failures"
       }
     ],
+    "naming_validation": [
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Naming rule passed.",
+        "rule": "pos_name_components"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Naming rule passed.",
+        "rule": "pos_name_forbidden_components"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Naming rule passed.",
+        "rule": "logistics_name_components"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Naming rule passed.",
+        "rule": "internal_name_components"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Naming rule passed.",
+        "rule": "ecommerce_short_components"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Naming rule passed.",
+        "rule": "ecommerce_short_forbidden_components"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Naming rule passed.",
+        "rule": "ecommerce_long_components"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Naming rule passed.",
+        "rule": "unit_label_format_in_names"
+      }
+    ],
+    "naming_failures": [
+      {
+        "status": "pass",
+        "path": "examples/naming_failures/product_ecommerce_long_missing_presentaciones.json",
+        "message": "Controlled naming failure was rejected as expected.",
+        "rule": "naming_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/naming_failures/product_ecommerce_long_missing_unit_label.json",
+        "message": "Controlled naming failure was rejected as expected.",
+        "rule": "naming_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/naming_failures/product_ecommerce_short_contains_reference.json",
+        "message": "Controlled naming failure was rejected as expected.",
+        "rule": "naming_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/naming_failures/product_internal_missing_reference.json",
+        "message": "Controlled naming failure was rejected as expected.",
+        "rule": "naming_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/naming_failures/product_invalid_unit_label_in_name.json",
+        "message": "Controlled naming failure was rejected as expected.",
+        "rule": "naming_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/naming_failures/product_logistics_missing_code.json",
+        "message": "Controlled naming failure was rejected as expected.",
+        "rule": "naming_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/naming_failures/product_logistics_missing_reference.json",
+        "message": "Controlled naming failure was rejected as expected.",
+        "rule": "naming_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/naming_failures/product_pos_contains_brand.json",
+        "message": "Controlled naming failure was rejected as expected.",
+        "rule": "naming_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/naming_failures/product_pos_contains_reference.json",
+        "message": "Controlled naming failure was rejected as expected.",
+        "rule": "naming_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/naming_failures/product_pos_missing_material.json",
+        "message": "Controlled naming failure was rejected as expected.",
+        "rule": "naming_failures"
+      }
+    ],
     "warnings": [
       {
         "status": "warning",
@@ -270,5 +384,5 @@
     ],
     "errors": []
   },
-  "next_recommended_step": "Agregar validaci?n de consistencia de naming contra docs/naming_rules_v1.md sin implementar l?gica comercial."
+  "next_recommended_step": "Agregar validaci?n de variantes/familias contra product_families.v1 sin implementar l?gica comercial."
 }
