@@ -239,3 +239,18 @@ Documentos:
 - `docs/initial_github_issues.md`
 - `docs/github_cli_setup_commands.md`
 
+## Module Map M1
+
+El proyecto usa módulos separados para evitar mezclar responsabilidades.
+
+`products_contract` está released v1 y funciona como columna vertebral del PIM.
+
+`inventory_flow`, `marketing`, `media`, `scraper_data_ingestion` y `commercial` evolucionan por separado mediante documentación, issues, branches y futuras integraciones controladas.
+
+Los casos ambiguos se resuelven mediante decisiones de frontera entre módulos.
+
+Documentos:
+
+- `docs/module_map_m1.md`
+- `docs/module_boundary_decisions.md`
+
