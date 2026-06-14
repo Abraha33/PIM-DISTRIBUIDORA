@@ -175,3 +175,22 @@ python scripts/validate_families.py
 python scripts/validate_data_quality.py
 python scripts/generate_validation_report.py
 ```
+
+## PIM Contract v1 release status
+
+`products.json v1` est? listo como contrato maestro base para integraci?n futura de m?dulos.
+
+Documentos de release:
+
+- `docs/release_checklist_v1.md`
+- `docs/module_integration_plan.md`
+
+Comando actual de validaci?n final:
+
+```bash
+python scripts/validate_contracts.py --include-failures --include-dictionaries --include-uniqueness --include-naming --include-families --include-data-quality --include-docs
+python scripts/generate_validation_report.py
+```
+
+Este estado no implementa l?gica real de stock, marketing, media, scraper, precios, costos o proveedores. Solo cierra el contrato v1 y define c?mo deben integrarse los m?dulos despu?s.
+
