@@ -239,6 +239,112 @@ Documentos:
 - `docs/initial_github_issues.md`
 - `docs/github_cli_setup_commands.md`
 
+## Metodología diaria de trabajo con tickets
+
+El trabajo diario del PIM no se maneja como una lista desordenada de tareas. Se organiza desde GitHub Issues y GitHub Projects, filtrando tickets según el enfoque del día.
+
+Los filtros principales son:
+
+- **Módulo:** `module:inventory_flow`, `module:products_contract`
+- **Tipo:** `type:epic`, `type:ticket`, `type:sensor`, `type:decision`
+- **Capa:** `layer:matematica`, `layer:empresarial`, `layer:documentacion`
+- **Estado:** `status:backlog`, `status:ready`, `status:review`
+- **Madurez:** `maturity:m1`
+- **Prioridad:** `priority:high`, `priority:medium`
+
+### Flujo diario
+
+1. **Definir el enfoque del día.**
+
+   Ejemplos:
+
+   - Hoy quiero trabajar matemática.
+   - Hoy quiero trabajar documentación.
+   - Hoy quiero trabajar sensores.
+   - Hoy quiero trabajar decisiones del módulo.
+   - Hoy quiero trabajar tickets listos.
+
+2. **Filtrar los tickets según el enfoque.**
+
+   Ejemplos:
+
+   - Matemática → `layer:matematica`
+   - Documentación → `layer:documentacion`
+   - Empresarial → `layer:empresarial`
+   - Sensores → `type:sensor`
+   - Listos para trabajar → `status:ready`
+
+3. **Elegir el ticket recomendado.**
+
+   Criterios:
+
+   - prioridad alta primero;
+   - estado `ready` primero;
+   - tickets base antes que tickets avanzados;
+   - decisiones de arquitectura antes de implementación profunda.
+
+4. **Trabajar cada ticket por capas.**
+
+   - **Capa empresarial:** qué problema real del negocio resuelve.
+   - **Capa matemática:** qué variables, fórmulas, umbrales o reglas usa.
+   - **Capa operativa:** qué acción debería tomar la empresa.
+   - **Capa JSON / técnica:** cómo queda representado para el sistema.
+
+5. **Cerrar la sesión dejando una salida concreta.**
+
+   La salida puede ser:
+
+   - decisión documentada;
+   - fórmula definida;
+   - regla de negocio;
+   - ejemplo real;
+   - estructura JSON;
+   - comentario para GitHub;
+   - actualización del issue.
+
+### Comandos diarios sugeridos
+
+| Comando diario | Filtro GitHub | Resultado esperado |
+| --- | --- | --- |
+| `/ver matematicas` | `layer:matematica` | Tickets relacionados con fórmulas, variables y reglas numéricas |
+| `/ver documentacion` | `layer:documentacion` | Tickets para documentar metodología, mapas y decisiones |
+| `/ver empresarial` | `layer:empresarial` | Tickets enfocados en lógica de negocio |
+| `/ver sensores` | `type:sensor` | Tickets de sensores de inventario |
+| `/ver ready` | `status:ready` | Tickets listos para trabajar |
+| `/ver backlog` | `status:backlog` | Ideas pendientes por madurar |
+
+### Ejemplo: trabajar matemática
+
+Si el enfoque del día es matemática, se filtra por:
+
+```text
+layer:matematica
+maturity:m1
+```
+
+Tickets esperados:
+
+- `TICKET-002 — rotation_sensor`
+- `TICKET-003 — cashflow_sensor`
+- `TICKET-004 — space_sensor`
+
+El ticket recomendado para iniciar es el que tenga `status:ready` y `priority:high`.
+
+### Ejemplo: trabajar documentación
+
+Si el enfoque del día es documentación, se filtra por:
+
+```text
+layer:documentacion
+```
+
+Tickets esperados:
+
+- `TICKET-000 — Definir Module Map M1 del PIM Envax`
+- `TICKET-001 — Documentar metodología de trabajo de inventory_flow`
+
+Primero se debe trabajar el mapa general del módulo y luego la metodología interna.
+
 ## Module Map M1
 
 El proyecto usa módulos separados para evitar mezclar responsabilidades.
@@ -253,4 +359,3 @@ Documentos:
 
 - `docs/module_map_m1.md`
 - `docs/module_boundary_decisions.md`
-
