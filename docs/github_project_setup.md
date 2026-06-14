@@ -1,14 +1,76 @@
 # GitHub Project Setup — PIM Envax
 
-## Proyecto recomendado
+## Proyecto operativo
 
-Crear un GitHub Project con el nombre:
+El Project oficial es:
 
 ```text
 PIM Envax — Roadmap & Backlog
 ```
 
-Este Project debe ser el tablero operativo para ideas, tickets, sensores, casos de uso, decisiones, bugs y validaciones.
+URL:
+
+```text
+https://github.com/users/Abraha33/projects/18
+```
+
+Este Project es el tablero diario para ideas, tickets, sensores, casos de uso, decisiones, bugs y validaciones.
+
+## Principio de organización
+
+- **Issues** son la fuente de verdad del trabajo.
+- **Project** muestra estado, módulo, prioridad, madurez y seguimiento visual.
+- **Milestones** representan metas grandes de entrega.
+- **Labels y campos** representan módulo, tipo, capa, prioridad y madurez.
+- **Documentos Markdown** explican el sistema, pero no reemplazan los Issues activos.
+
+## Milestones
+
+Los milestones son objetivos de entrega, no capas de trabajo.
+
+Ejemplos:
+
+- `PIM Contract v1 — Released`
+- `Inventory Flow M1 — Methodology`
+- `Inventory Flow M2 — Validation`
+- `Inventory Flow M3 — Integration`
+- `Marketing M1 — Methodology`
+- `Media M1 — Methodology`
+- `Commercial M1 — Methodology`
+- `Scraper Data M1 — Stabilization`
+
+## Capas de trabajo
+
+Las capas no deben usarse como milestones. Deben mantenerse como labels o campos del Project:
+
+- `layer:empresarial`
+- `layer:matematica`
+- `layer:operativa`
+- `layer:json`
+- `layer:documentacion`
+- `layer:tecnica`
+
+Esto evita mezclar una meta de entrega con la naturaleza del trabajo.
+
+## Status del workflow diario
+
+El campo `Status` representa dónde está el ticket hoy.
+
+Valores configurados:
+
+- `Icebox`: idea guardada, todavía no lista.
+- `Backlog`: trabajo probable, pero no necesariamente listo para ejecutar.
+- `Ready`: listo para trabajar.
+- `In Progress`: en trabajo.
+- `Review`: listo para revisión.
+- `Done`: terminado.
+- `Blocked`: bloqueado por datos, decisión o dependencia.
+
+Mapeo aplicado:
+
+- `Todo` → `Backlog`
+- `In Progress` → `In Progress`
+- `Done` → `Done`
 
 ## Vistas recomendadas
 
@@ -31,33 +93,14 @@ Este Project debe ser el tablero operativo para ideas, tickets, sensores, casos 
 - Business Value
 - Blocked By
 
-## Status values
-
-- Icebox
-- Backlog
-- Ready
-- In Progress
-- Review
-- Done
-- Blocked
-
 ## Module values
 
 - products_contract
 - inventory_flow
 - marketing
 - media
-- scraper
+- scraper_data_ingestion
 - commercial
-
-## Layer values
-
-- empresarial
-- matematica
-- operativa
-- json
-- documentacion
-- tecnica
 
 ## Type values
 
@@ -76,30 +119,38 @@ Este Project debe ser el tablero operativo para ideas, tickets, sensores, casos 
 - M2 validacion
 - M3 integracion
 
-## Nota operativa
+## Uso diario desde móvil o voz
 
-GitHub Issues contiene el trabajo. GitHub Projects muestra el trabajo.
+Flujo recomendado:
 
-No conviene duplicar estados en documentos Markdown si el Issue ya existe. Los docs explican; los Issues operan.
+1. Abrir el Project `PIM Envax — Roadmap & Backlog`.
+2. Revisar la columna `Ready`.
+3. Elegir un Issue concreto.
+4. Moverlo a `In Progress`.
+5. Trabajarlo por capas.
+6. Moverlo a `Review` cuando tenga salida clara.
+7. Moverlo a `Done` solo cuando cumpla criterios de aceptación.
+8. Si aparece una idea nueva, crear Issue tipo `Idea / Icebox`.
+9. Si falta información, mover a `Blocked`.
 
-## Estado de creaci?n
+## Estado actual de creación
 
 Creado en GitHub:
 
-- Project: `PIM Envax ? Roadmap & Backlog`
-- URL: https://github.com/users/Abraha33/projects/18
-- Issues iniciales agregados al Project: #1 a #8
+- Project: `PIM Envax — Roadmap & Backlog`
+- URL: `https://github.com/users/Abraha33/projects/18`
+- Issues iniciales agregados al Project: `#1` a `#8`
+- Milestones iniciales creados.
+- Issues `#1` a `#8` asignados al milestone `Inventory Flow M1 — Methodology`.
+- Campo `Status` configurado con `Icebox / Backlog / Ready / In Progress / Review / Done / Blocked`.
 
-Campos creados con GitHub CLI:
+## Nota importante sobre Inbox
 
-- Module
-- Layer
-- Type
-- Maturity
-- Priority
-- Sensor
-- Ticket ID
-- Business Value
-- Blocked By
+GitHub Inbox no es el tablero de tickets. Inbox muestra notificaciones, menciones, asignaciones o actividad relevante para el usuario.
 
-Nota: el campo `Status` existe por defecto en GitHub Projects con opciones iniciales de GitHub. Si se requiere el set exacto `Icebox / Backlog / Ready / In Progress / Review / Done / Blocked`, ajustarlo manualmente desde la UI del Project.
+Para ver el trabajo activo hay que usar:
+
+- Issues del repositorio: `https://github.com/Abraha33/PIM-DISTRIBUIDORA/issues`
+- Project: `https://github.com/users/Abraha33/projects/18`
+
+Si se quiere que un ticket aparezca como responsabilidad directa en la app móvil, conviene asignarlo al usuario.

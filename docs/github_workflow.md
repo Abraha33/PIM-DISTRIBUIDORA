@@ -45,11 +45,22 @@ TICKET-002 — Diseñar rotation_sensor con base matemática
 
 Las sub-issues deben representar una capa o paso técnico pequeño, no otra idea gigante.
 
-## Cómo usar milestones M1 / M2 / M3
+## Milestones M1 / M2 / M3
+
+Los milestones representan entregas grandes.
 
 - **M1 metodología:** propósito empresarial, variables, fórmulas, reglas, tickets y forma JSON.
 - **M2 validación:** ejemplos, casos controlados, validadores y documentación de errores.
 - **M3 integración:** conexión de salidas de módulos con futuras versiones de `products.json`.
+
+Las capas de trabajo no son milestones. Las capas se mantienen como labels o campos del Project:
+
+- empresarial
+- matemática
+- operativa
+- JSON
+- documentación
+- técnica
 
 `products.json v1` está cerrado. Los experimentos de módulos no deben modificarlo directamente.
 
@@ -57,15 +68,47 @@ Las sub-issues deben representar una capa o paso técnico pequeño, no otra idea
 
 1. Revisar el Project board.
 2. Elegir un Issue en estado `Ready`.
-3. Trabajarlo por las cuatro capas:
+3. Moverlo a `In Progress`.
+4. Trabajarlo por las cuatro capas:
    - empresarial
    - matemática
    - operativa
    - JSON
-4. Crear o actualizar documentación.
-5. Linkear el PR al Issue.
-6. Mover el Issue a `Review`.
-7. Cerrar solo cuando se cumplan los criterios de aceptación.
+5. Crear o actualizar documentación.
+6. Linkear el PR al Issue cuando haya cambios en repositorio.
+7. Mover el Issue a `Review`.
+8. Cerrar solo cuando se cumplan los criterios de aceptación.
+
+## Flujo diario por voz / móvil
+
+Este flujo está pensado para trabajar desde el celular o hablando con Codex:
+
+1. Preguntar: “¿Qué Issues están en Ready?”
+2. Elegir un Issue.
+3. Moverlo a `In Progress`.
+4. Trabajarlo por capas:
+   - empresarial
+   - matemática
+   - operativa
+   - JSON
+5. Cuando tenga salida clara, moverlo a `Review`.
+6. Después de revisar y cerrar, moverlo a `Done`.
+7. Si la idea todavía no está lista, moverla a `Icebox`.
+8. Si falta información o decisión, moverla a `Blocked`.
+
+## Sobre GitHub Inbox
+
+GitHub Inbox no funciona como lista de todos los tickets del proyecto.
+
+Inbox muestra notificaciones: menciones, asignaciones, comentarios, revisiones o actividad que GitHub considera relevante para tu usuario.
+
+Para ver los tickets, usá:
+
+- la pestaña **Issues** del repositorio;
+- el Project `PIM Envax — Roadmap & Backlog`;
+- filtros por `assignee`, `label`, `status` o `milestone`.
+
+Si querés que un ticket te aparezca como responsabilidad directa, hay que asignártelo.
 
 ## Regla de oro
 
