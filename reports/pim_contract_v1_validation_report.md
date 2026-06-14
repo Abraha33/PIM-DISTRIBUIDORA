@@ -6,7 +6,7 @@
 
 - Contrato: `products.json v1`
 - Repositorio: `PIM-DISTRIBUIDORA`
-- Generado: `2026-06-14T03:46:47.025728+00:00`
+- Generado: `2026-06-14T04:01:48.115424+00:00`
 
 ## Resumen
 
@@ -22,7 +22,9 @@
 | Fallos controlados de nombres | ? pass |
 | Validaci?n de familias y variantes | ? pass |
 | Fallos controlados de familias y variantes | ? pass |
-| Advertencias | ?? 4 |
+| Validaci?n de data_quality | ? pass |
+| Fallos controlados de data_quality | ? pass |
+| Advertencias | ?? 13 |
 | Errores | ? 0 |
 
 ## Validaci?n de schema
@@ -128,12 +130,52 @@
 - ? pass `family_failures` ? `examples/family_failures/product_family_parent_without_family_id.json` ? Controlled family failure was rejected as expected.
 - ?? warning `family_failures` ? `examples/family_failures/product_not_sellable_not_family_parent_warning.json` ? Controlled family warning emitted a warning as expected.
 
+## Validaci?n de data_quality
+
+- ? pass `data_quality_status_allowed` ? `contracts/products.v1.example.json` ? Data quality rule passed.
+- ? pass `ready_requires_no_missing_fields` ? `contracts/products.v1.example.json` ? Data quality rule passed.
+- ? pass `ready_requires_no_errors` ? `contracts/products.v1.example.json` ? Data quality rule passed.
+- ? pass `errors_prevent_ready` ? `contracts/products.v1.example.json` ? Data quality rule passed.
+- ? pass `missing_fields_prevent_ready` ? `contracts/products.v1.example.json` ? Data quality rule passed.
+- ? pass `missing_core_fields_are_listed` ? `contracts/products.v1.example.json` ? Data quality rule passed.
+- ? pass `data_quality_arrays_are_strings` ? `contracts/products.v1.example.json` ? Data quality rule passed.
+- ? pass `same_min_max_unit` ? `contracts/products.v1.example.json` ? Data quality warning rule passed.
+- ? pass `reference_label_empty` ? `contracts/products.v1.example.json` ? Data quality warning rule passed.
+- ? pass `brand_name_empty` ? `contracts/products.v1.example.json` ? Data quality warning rule passed.
+- ?? warning `prices_empty_v1` ? `contracts/products.v1.example.json` ? commercial.prices is empty; prices come from scraper later in v1
+- ?? warning `costs_empty_v1` ? `contracts/products.v1.example.json` ? commercial.costs is empty; costs come from scraper later in v1
+- ?? warning `suppliers_empty_v1` ? `contracts/products.v1.example.json` ? suppliers is empty; suppliers come from scraper later in v1
+
+## Fallos controlados de data_quality
+
+- ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_brand_empty_warning.json` ? Controlled data_quality warning emitted a warning as expected.
+- ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_costs_empty_warning.json` ? Controlled data_quality warning emitted a warning as expected.
+- ? pass `data_quality_failures` ? `examples/data_quality_failures/product_data_quality_arrays_invalid.json` ? Controlled data_quality failure was rejected as expected.
+- ? pass `data_quality_failures` ? `examples/data_quality_failures/product_error_but_status_ready.json` ? Controlled data_quality failure was rejected as expected.
+- ? pass `data_quality_failures` ? `examples/data_quality_failures/product_missing_core_field_not_listed.json` ? Controlled data_quality failure was rejected as expected.
+- ? pass `data_quality_failures` ? `examples/data_quality_failures/product_missing_fields_but_status_ready.json` ? Controlled data_quality failure was rejected as expected.
+- ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_prices_empty_warning.json` ? Controlled data_quality warning emitted a warning as expected.
+- ? pass `data_quality_failures` ? `examples/data_quality_failures/product_ready_with_errors.json` ? Controlled data_quality failure was rejected as expected.
+- ? pass `data_quality_failures` ? `examples/data_quality_failures/product_ready_with_missing_fields.json` ? Controlled data_quality failure was rejected as expected.
+- ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_reference_empty_warning.json` ? Controlled data_quality warning emitted a warning as expected.
+- ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_same_min_max_unit_warning.json` ? Controlled data_quality warning emitted a warning as expected.
+- ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_suppliers_empty_warning.json` ? Controlled data_quality warning emitted a warning as expected.
+
 ## Advertencias
 
 - ?? warning `uniqueness_failures` ? `examples/uniqueness_failures/barcode_history_recycled_warning.json` ? Controlled warning example emitted a warning as expected.
 - ?? warning `family_failures` ? `examples/family_failures/family_parent_code_missing_warning.json` ? Controlled family warning emitted a warning as expected.
 - ?? warning `family_failures` ? `examples/family_failures/family_variant_axis_missing_child_attribute_warning.json` ? Controlled family warning emitted a warning as expected.
 - ?? warning `family_failures` ? `examples/family_failures/product_not_sellable_not_family_parent_warning.json` ? Controlled family warning emitted a warning as expected.
+- ?? warning `prices_empty_v1` ? `contracts/products.v1.example.json` ? commercial.prices is empty; prices come from scraper later in v1
+- ?? warning `costs_empty_v1` ? `contracts/products.v1.example.json` ? commercial.costs is empty; costs come from scraper later in v1
+- ?? warning `suppliers_empty_v1` ? `contracts/products.v1.example.json` ? suppliers is empty; suppliers come from scraper later in v1
+- ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_brand_empty_warning.json` ? Controlled data_quality warning emitted a warning as expected.
+- ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_costs_empty_warning.json` ? Controlled data_quality warning emitted a warning as expected.
+- ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_prices_empty_warning.json` ? Controlled data_quality warning emitted a warning as expected.
+- ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_reference_empty_warning.json` ? Controlled data_quality warning emitted a warning as expected.
+- ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_same_min_max_unit_warning.json` ? Controlled data_quality warning emitted a warning as expected.
+- ?? warning `data_quality_failures` ? `examples/data_quality_failures/product_suppliers_empty_warning.json` ? Controlled data_quality warning emitted a warning as expected.
 
 ## Errores
 
@@ -141,4 +183,4 @@
 
 ## Siguiente paso recomendado
 
-Agregar validaci?n de reglas de calidad de datos (`data_quality`) sin implementar l?gica comercial.
+Agregar validaci?n de cobertura documental entre docs/ y scripts sin implementar l?gica comercial.

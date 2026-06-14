@@ -40,6 +40,12 @@ from validate_families import (  # noqa: E402
     load_scenario as load_family_scenario,
     validate_family_rules,
 )
+from validate_data_quality import (  # noqa: E402
+    DATA_QUALITY_FAILURES_DIR,
+    PRODUCT_CONTRACT as DATA_QUALITY_PRODUCT_CONTRACT,
+    load_json as load_data_quality_json,
+    validate_product_data_quality,
+)
 
 REPORTS_DIR = ROOT / "reports"
 JSON_REPORT_PATH = REPORTS_DIR / "pim_contract_v1_validation_report.json"
@@ -379,6 +385,85 @@ def collect_family_failures() -> tuple[str, list[dict[str, str]], list[dict[str,
 
     return ("pass" if not errors else "fail", results, errors, warning_items)
 
+
+
+def data_quality_rule_results(invalid: dict[str, list[str]], warnings: dict[str, list[str]], path: str) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    rule_names = [
+        "data_quality_status_allowed",
+        "ready_requires_no_missing_fields",
+        "ready_requires_no_errors",
+        "errors_prevent_ready",
+        "missing_fields_prevent_ready",
+        "missing_core_fields_are_listed",
+        "data_quality_arrays_are_strings",
+    ]
+    warning_rule_names = [
+        "same_min_max_unit",
+        "reference_label_empty",
+        "brand_name_empty",
+        "prices_empty_v1",
+        "costs_empty_v1",
+        "suppliers_empty_v1",
+    ]
+    results: list[dict[str, str]] = []
+    errors: list[dict[str, str]] = []
+    warning_items: list[dict[str, str]] = []
+
+    for rule_name in rule_names:
+        if rule_name in invalid:
+            for message in invalid[rule_name]:
+                item = make_result("fail", path, message, rule_name)
+                results.append(item)
+                errors.append(item)
+        else:
+            results.append(make_result("pass", path, "Data quality rule passed.", rule_name))
+
+    for rule_name in warning_rule_names:
+        if rule_name in warnings:
+            for message in warnings[rule_name]:
+                item = make_result("warning", path, message, rule_name)
+                results.append(item)
+                warning_items.append(item)
+        else:
+            results.append(make_result("pass", path, "Data quality warning rule passed.", rule_name))
+
+    return results, errors, warning_items
+
+
+def collect_data_quality_validation() -> tuple[str, list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    product = load_data_quality_json(DATA_QUALITY_PRODUCT_CONTRACT)
+    invalid, warnings = validate_product_data_quality(product)
+    results, errors, warning_items = data_quality_rule_results(invalid, warnings, relative(DATA_QUALITY_PRODUCT_CONTRACT))
+    return ("pass" if not errors else "fail", results, errors, warning_items)
+
+
+def collect_data_quality_failures() -> tuple[str, list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    results: list[dict[str, str]] = []
+    errors: list[dict[str, str]] = []
+    warning_items: list[dict[str, str]] = []
+    failure_files = sorted(DATA_QUALITY_FAILURES_DIR.glob("*.json"))
+
+    if not failure_files:
+        item = make_result("fail", relative(DATA_QUALITY_FAILURES_DIR), "No controlled data_quality failure examples found.", "data_quality_failures")
+        return "fail", [item], [item], []
+
+    for failure_path in failure_files:
+        failure_rel = relative(failure_path)
+        product = load_data_quality_json(failure_path)
+        invalid, warnings = validate_product_data_quality(product)
+        if invalid:
+            results.append(make_result("pass", failure_rel, "Controlled data_quality failure was rejected as expected.", "data_quality_failures"))
+        elif warnings:
+            warning = make_result("warning", failure_rel, "Controlled data_quality warning emitted a warning as expected.", "data_quality_failures")
+            results.append(warning)
+            warning_items.append(warning)
+        else:
+            item = make_result("fail", failure_rel, "Controlled data_quality failure passed unexpectedly.", "data_quality_failures")
+            results.append(item)
+            errors.append(item)
+
+    return ("pass" if not errors else "fail", results, errors, warning_items)
+
 def build_report() -> dict[str, Any]:
     schema_status, schema_results, schema_errors = collect_schema_validation()
     validation_failures_status, validation_failures_results, validation_failures_errors = collect_validation_failures()
@@ -390,6 +475,8 @@ def build_report() -> dict[str, Any]:
     naming_failures_status, naming_failures_results, naming_failures_errors, naming_failures_warnings = collect_naming_failures()
     family_status, family_results, family_errors, family_warnings = collect_family_validation()
     family_failures_status, family_failures_results, family_failures_errors, family_failures_warnings = collect_family_failures()
+    data_quality_status, data_quality_results, data_quality_errors, data_quality_warnings = collect_data_quality_validation()
+    data_quality_failures_status, data_quality_failures_results, data_quality_failures_errors, data_quality_failures_warnings = collect_data_quality_failures()
 
     all_errors = (
         schema_errors
@@ -402,8 +489,10 @@ def build_report() -> dict[str, Any]:
         + naming_failures_errors
         + family_errors
         + family_failures_errors
+        + data_quality_errors
+        + data_quality_failures_errors
     )
-    all_warnings = uniqueness_warnings + uniqueness_failures_warnings + naming_warnings + naming_failures_warnings + family_warnings + family_failures_warnings
+    all_warnings = uniqueness_warnings + uniqueness_failures_warnings + naming_warnings + naming_failures_warnings + family_warnings + family_failures_warnings + data_quality_warnings + data_quality_failures_warnings
     overall_status = "fail" if all_errors else "pass"
 
     return {
@@ -422,6 +511,8 @@ def build_report() -> dict[str, Any]:
             "naming_failures": naming_failures_status,
             "family_validation": family_status,
             "family_failures": family_failures_status,
+            "data_quality_validation": data_quality_status,
+            "data_quality_failures": data_quality_failures_status,
             "warnings_count": len(all_warnings),
             "errors_count": len(all_errors),
         },
@@ -436,10 +527,12 @@ def build_report() -> dict[str, Any]:
             "naming_failures": naming_failures_results,
             "family_validation": family_results,
             "family_failures": family_failures_results,
+            "data_quality_validation": data_quality_results,
+            "data_quality_failures": data_quality_failures_results,
             "warnings": all_warnings,
             "errors": all_errors,
         },
-        "next_recommended_step": "Agregar validaci?n de reglas de calidad de datos (`data_quality`) sin implementar l?gica comercial.",
+        "next_recommended_step": "Agregar validaci?n de cobertura documental entre docs/ y scripts sin implementar l?gica comercial.",
     }
 
 
@@ -491,6 +584,8 @@ def render_markdown(report: dict[str, Any]) -> str:
 | Fallos controlados de nombres | {status_label(summary['naming_failures'])} |
 | Validaci?n de familias y variantes | {status_label(summary['family_validation'])} |
 | Fallos controlados de familias y variantes | {status_label(summary['family_failures'])} |
+| Validaci?n de data_quality | {status_label(summary['data_quality_validation'])} |
+| Fallos controlados de data_quality | {status_label(summary['data_quality_failures'])} |
 | Advertencias | ?? {summary['warnings_count']} |
 | Errores | ? {summary['errors_count']} |
 
@@ -533,6 +628,14 @@ def render_markdown(report: dict[str, Any]) -> str:
 ## Fallos controlados de familias y variantes
 
 {render_items(results['family_failures'])}
+
+## Validaci?n de data_quality
+
+{render_items(results['data_quality_validation'])}
+
+## Fallos controlados de data_quality
+
+{render_items(results['data_quality_failures'])}
 
 ## Advertencias
 

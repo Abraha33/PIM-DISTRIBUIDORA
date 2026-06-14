@@ -138,3 +138,16 @@ python scripts/validate_contracts.py --include-families
 ```
 
 Esta validaci?n no implementa l?gica comercial de variantes. Solo valida relaciones: `family_id`, `children_codes`, `parent_code`, membres?a de hijos, duplicados y advertencias de variante.
+
+
+## Data quality validation
+
+La validaci?n de `data_quality` revisa gobernanza de datos del producto.
+
+```bash
+python scripts/validate_data_quality.py
+python scripts/validate_data_quality.py --include-failures
+python scripts/validate_contracts.py --include-data-quality
+```
+
+`data_quality` no valida calidad f?sica del producto. Calidad f?sica, almacenamiento, humedad, calor, rotaci?n y pol?ticas de stock pertenecen al m?dulo `inventory_flow`.

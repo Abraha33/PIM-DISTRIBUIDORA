@@ -1,7 +1,7 @@
 {
   "contract_version": "products.json v1",
   "repository": "PIM-DISTRIBUIDORA",
-  "generated_at": "2026-06-14T03:46:47.025728+00:00",
+  "generated_at": "2026-06-14T04:01:48.115424+00:00",
   "overall_status": "pass",
   "summary": {
     "schema_validation": "pass",
@@ -14,7 +14,9 @@
     "naming_failures": "pass",
     "family_validation": "pass",
     "family_failures": "pass",
-    "warnings_count": 4,
+    "data_quality_validation": "pass",
+    "data_quality_failures": "pass",
+    "warnings_count": 13,
     "errors_count": 0
   },
   "results": {
@@ -476,6 +478,160 @@
         "rule": "family_failures"
       }
     ],
+    "data_quality_validation": [
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Data quality rule passed.",
+        "rule": "data_quality_status_allowed"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Data quality rule passed.",
+        "rule": "ready_requires_no_missing_fields"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Data quality rule passed.",
+        "rule": "ready_requires_no_errors"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Data quality rule passed.",
+        "rule": "errors_prevent_ready"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Data quality rule passed.",
+        "rule": "missing_fields_prevent_ready"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Data quality rule passed.",
+        "rule": "missing_core_fields_are_listed"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Data quality rule passed.",
+        "rule": "data_quality_arrays_are_strings"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Data quality warning rule passed.",
+        "rule": "same_min_max_unit"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Data quality warning rule passed.",
+        "rule": "reference_label_empty"
+      },
+      {
+        "status": "pass",
+        "path": "contracts/products.v1.example.json",
+        "message": "Data quality warning rule passed.",
+        "rule": "brand_name_empty"
+      },
+      {
+        "status": "warning",
+        "path": "contracts/products.v1.example.json",
+        "message": "commercial.prices is empty; prices come from scraper later in v1",
+        "rule": "prices_empty_v1"
+      },
+      {
+        "status": "warning",
+        "path": "contracts/products.v1.example.json",
+        "message": "commercial.costs is empty; costs come from scraper later in v1",
+        "rule": "costs_empty_v1"
+      },
+      {
+        "status": "warning",
+        "path": "contracts/products.v1.example.json",
+        "message": "suppliers is empty; suppliers come from scraper later in v1",
+        "rule": "suppliers_empty_v1"
+      }
+    ],
+    "data_quality_failures": [
+      {
+        "status": "warning",
+        "path": "examples/data_quality_failures/product_brand_empty_warning.json",
+        "message": "Controlled data_quality warning emitted a warning as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/data_quality_failures/product_costs_empty_warning.json",
+        "message": "Controlled data_quality warning emitted a warning as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/data_quality_failures/product_data_quality_arrays_invalid.json",
+        "message": "Controlled data_quality failure was rejected as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/data_quality_failures/product_error_but_status_ready.json",
+        "message": "Controlled data_quality failure was rejected as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/data_quality_failures/product_missing_core_field_not_listed.json",
+        "message": "Controlled data_quality failure was rejected as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/data_quality_failures/product_missing_fields_but_status_ready.json",
+        "message": "Controlled data_quality failure was rejected as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/data_quality_failures/product_prices_empty_warning.json",
+        "message": "Controlled data_quality warning emitted a warning as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/data_quality_failures/product_ready_with_errors.json",
+        "message": "Controlled data_quality failure was rejected as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "pass",
+        "path": "examples/data_quality_failures/product_ready_with_missing_fields.json",
+        "message": "Controlled data_quality failure was rejected as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/data_quality_failures/product_reference_empty_warning.json",
+        "message": "Controlled data_quality warning emitted a warning as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/data_quality_failures/product_same_min_max_unit_warning.json",
+        "message": "Controlled data_quality warning emitted a warning as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/data_quality_failures/product_suppliers_empty_warning.json",
+        "message": "Controlled data_quality warning emitted a warning as expected.",
+        "rule": "data_quality_failures"
+      }
+    ],
     "warnings": [
       {
         "status": "warning",
@@ -500,9 +656,63 @@
         "path": "examples/family_failures/product_not_sellable_not_family_parent_warning.json",
         "message": "Controlled family warning emitted a warning as expected.",
         "rule": "family_failures"
+      },
+      {
+        "status": "warning",
+        "path": "contracts/products.v1.example.json",
+        "message": "commercial.prices is empty; prices come from scraper later in v1",
+        "rule": "prices_empty_v1"
+      },
+      {
+        "status": "warning",
+        "path": "contracts/products.v1.example.json",
+        "message": "commercial.costs is empty; costs come from scraper later in v1",
+        "rule": "costs_empty_v1"
+      },
+      {
+        "status": "warning",
+        "path": "contracts/products.v1.example.json",
+        "message": "suppliers is empty; suppliers come from scraper later in v1",
+        "rule": "suppliers_empty_v1"
+      },
+      {
+        "status": "warning",
+        "path": "examples/data_quality_failures/product_brand_empty_warning.json",
+        "message": "Controlled data_quality warning emitted a warning as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/data_quality_failures/product_costs_empty_warning.json",
+        "message": "Controlled data_quality warning emitted a warning as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/data_quality_failures/product_prices_empty_warning.json",
+        "message": "Controlled data_quality warning emitted a warning as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/data_quality_failures/product_reference_empty_warning.json",
+        "message": "Controlled data_quality warning emitted a warning as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/data_quality_failures/product_same_min_max_unit_warning.json",
+        "message": "Controlled data_quality warning emitted a warning as expected.",
+        "rule": "data_quality_failures"
+      },
+      {
+        "status": "warning",
+        "path": "examples/data_quality_failures/product_suppliers_empty_warning.json",
+        "message": "Controlled data_quality warning emitted a warning as expected.",
+        "rule": "data_quality_failures"
       }
     ],
     "errors": []
   },
-  "next_recommended_step": "Agregar validaci?n de reglas de calidad de datos (`data_quality`) sin implementar l?gica comercial."
+  "next_recommended_step": "Agregar validaci?n de cobertura documental entre docs/ y scripts sin implementar l?gica comercial."
 }

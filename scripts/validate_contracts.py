@@ -11,6 +11,7 @@ from validate_dictionaries import run_dictionary_validation
 from validate_uniqueness import run_uniqueness_validation
 from validate_naming import run_naming_validation
 from validate_families import run_family_validation
+from validate_data_quality import run_data_quality_validation
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -134,6 +135,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Also validate product family and variant relationship rules.",
     )
+    parser.add_argument(
+        "--include-data-quality",
+        action="store_true",
+        help="Also validate product data_quality governance rules.",
+    )
     return parser.parse_args()
 
 
@@ -146,6 +152,7 @@ def main() -> int:
     uniqueness_validation_ok = True
     naming_validation_ok = True
     family_validation_ok = True
+    data_quality_validation_ok = True
 
     if args.include_failures:
         expected_failures_ok = validate_expected_failures()
@@ -162,7 +169,10 @@ def main() -> int:
     if args.include_families:
         family_validation_ok = run_family_validation(include_failures=args.include_failures)
 
-    return 0 if valid_contracts_ok and expected_failures_ok and dictionary_validation_ok and uniqueness_validation_ok and naming_validation_ok and family_validation_ok else 1
+    if args.include_data_quality:
+        data_quality_validation_ok = run_data_quality_validation(include_failures=args.include_failures)
+
+    return 0 if valid_contracts_ok and expected_failures_ok and dictionary_validation_ok and uniqueness_validation_ok and naming_validation_ok and family_validation_ok and data_quality_validation_ok else 1
 
 
 if __name__ == "__main__":
