@@ -45,6 +45,25 @@ El objetivo es guardar contratos limpios, ejemplos versionados y diccionarios ba
 
 No se debe construir l?gica de negocio, scrapers, f?rmulas de stock ni campa?as desde este repositorio en esta etapa. Primero se solidifica el contrato. Despu?s se automatiza. Es as? de f?cil.
 
+## Relación con otros repos del ecosistema
+
+`PIM-DISTRIBUIDORA` forma parte de un ecosistema más grande:
+
+- `ERP`: ASNO nuevo / ERP futuro.
+- Scraper ASNO: extracción de datos desde ASNO actual / Wappsi.
+- Clientes Inteligentes: clasificación y scoring de clientes.
+- Drive/Obsidian: memoria viva del proyecto.
+
+Este repo no reemplaza esos repos. Define contratos, diccionarios, validadores, documentación estable y módulos PIM.
+
+Entrada principal:
+
+`docs/pim_master/00_PIM_MASTER_INDEX.md`
+
+Mapa de repos relacionados:
+
+`docs/pim_master/06_REPOS_RELACIONADOS.md`
+
 ## Contract validation
 
 Para validar los contratos JSON contra los schemas formales:
