@@ -14,3 +14,8 @@ Las siguientes decisiones están cerradas y no deben reabrirse sin justificació
 | 8 | Los módulos automáticos no sobrescriben campos protegidos sin auditoría. | Evitar corrupción de datos maestros. |
 | 9 | Scraper ASNO produce datos; PIM valida/normaliza/contrata. | Separación clara de responsabilidades. |
 | 10 | Clientes Inteligentes analiza clientes; PIM puede proveer productos/datos normalizados. | PIM es fuente de verdad de producto, no de análisis comercial. |
+| 11 | Compras M1 pertenece a PIM-DISTRIBUIDORA. | El módulo es documentación de contrato y flujo, no ejecución transaccional. |
+| 12 | La extracción técnica de compras vive en Scraper_Asno. | Separación de responsabilidades: PIM documenta, scraper extrae. |
+| 13 | La recepción con evidencia es parte del flujo de Compras M1. | No es un proceso separado; está integrado. |
+| 14 | El aviso de productos nuevos ocurre después de revisión/filtro. | Evita notificaciones prematuras de mercancía no validada. |
+| 15 | ERP no se modifica en esta fase de Compras M1. | El ERP futuro consumirá cuando esté maduro. |

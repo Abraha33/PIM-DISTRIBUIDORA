@@ -6,9 +6,9 @@
 - [ ] Crear roles por módulo.
 - [ ] Documentar integración con Scraper ASNO.
 - [ ] Documentar integración con Clientes Inteligentes.
-- [ ] Definir Compras M1.
-- [ ] Definir Recepción de Mercancía.
-- [ ] Definir Aviso de Productos Nuevos.
+- [x] Definir Compras M1 (profundizado 2026-06-19).
+- [x] Definir Recepción de Mercancía (actualizado 2026-06-19).
+- [x] Definir Aviso de Productos Nuevos (actualizado 2026-06-19).
 - [ ] Definir Precios Comerciales.
 - [ ] Definir Órdenes de Compra.
 

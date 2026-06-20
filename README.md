@@ -23,6 +23,9 @@ El objetivo es guardar contratos limpios, ejemplos versionados y diccionarios ba
 
 ## M?dulos
 
+- `modules/purchases_m1`: compras M1 — registro, recepci?n, revisi?n, aviso de productos nuevos (estado: partial).
+- `modules/purchase_reception`: recepci?n de mercanc?a con evidencia (estado: partial).
+- `modules/new_products_notice`: aviso de productos nuevos y reposiciones relevantes (estado: partial).
 - `modules/inventory_flow`: futuro m?dulo para stock level, quality control f?sico y flujo de inventario.
 - `modules/marketing`: futuro m?dulo para clientes objetivo, cat?logos, campa?as y promociones.
 - `modules/media`: futuro m?dulo para im?genes por uso.

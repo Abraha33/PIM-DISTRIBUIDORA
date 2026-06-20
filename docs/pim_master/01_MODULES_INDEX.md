@@ -11,9 +11,9 @@
 | barcode_history | sólido |
 | data_quality | sólido/parcial |
 | inventory_flow | draft |
-| purchases_m1 | draft |
-| purchase_reception | draft |
-| new_products_notice | draft |
+| purchases_m1 | partial |
+| purchase_reception | partial |
+| new_products_notice | partial |
 | purchase_orders | draft |
 | commercial_pricing | draft |
 | selling_price_decision | draft |

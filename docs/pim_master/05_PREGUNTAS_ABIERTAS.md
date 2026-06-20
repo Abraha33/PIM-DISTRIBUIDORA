@@ -12,3 +12,10 @@
 | 8 | ¿Qué contrato debe existir entre PIM y Clientes Inteligentes? | Contrato de entrada/salida. | Definir schemas. |
 | 9 | ¿Qué contrato debe existir entre Scraper ASNO y PIM? | Contrato de entrada/salida. | Definir schemas. |
 | 10 | ¿Qué parte consumirá el ERP futuro? | El ERP consumirá PIM pero no totalmente. | Definir alcance. |
+| 11 | ¿Quién toma la foto de recepción? | La evidencia fotográfica es parte del flujo. | Almacén, recepcionista o comprador. |
+| 12 | ¿Dónde se guarda la evidencia (fotos)? | Las fotos requieren almacenamiento. | Pendiente de definir (local, S3, Supabase). |
+| 13 | ¿Qué se considera producto nuevo? | Puede ser nuevo para PIM pero no nuevo en el mercado. | Definir regla: no existe en products.json. |
+| 14 | ¿Qué se considera reposición relevante? | No toda reposición merece aviso. | Definir umbral: producto sin compra en N meses. |
+| 15 | ¿Quién decide precio final en el flujo de compra? | El flujo marca requires_price_decision. | Gerente, administrador o vendedor. |
+| 16 | ¿Qué vendedores o puntos de venta reciben aviso? | El aviso debe llegar a los interesados. | Lista por categoría de producto o zona. |
+| 17 | ¿El aviso se genera automático o requiere aprobación humana? | El flujo actual requiere revisión. | Podría ser automático para productos conocidos. |
